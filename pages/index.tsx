@@ -2,6 +2,7 @@ import Head from "next/head";
 import { NextPage } from "next";
 import client from "../lib/apollo-client";
 import { EPISODES_QUERY } from "../queries";
+import Link from "next/link";
 
 interface Props {
   episodes: {
@@ -33,7 +34,9 @@ const Home: NextPage<Props> = (props) => {
         <ul>
           {episodes.results.map((i) => (
             <li key={i.id}>
-              {i.episode} - {i.name}
+              <Link href={`/episody/${i.id}`}>
+                {i.episode} - {i.name}
+              </Link>
             </li>
           ))}
         </ul>
