@@ -4,7 +4,7 @@ import Link from "next/link";
 import { NextPage } from "next";
 
 // bootstrap imports
-import Container from "react-bootstrap/esm/Container";
+import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 

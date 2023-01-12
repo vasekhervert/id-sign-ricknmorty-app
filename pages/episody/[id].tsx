@@ -1,5 +1,15 @@
-import Head from "next/head";
+// next imports
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+
+// bootstrap imports
+import { Container } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+
+// components imports
+import Layout from "../../components/Layout/Layout";
+
+// other imports
 import { getAllEpisodesIds, getSingleEpisode } from "../../helpers";
 
 interface Props {
@@ -18,23 +28,29 @@ interface Props {
 const Episode: NextPage<Props> = (props) => {
   const { name, episode, characters, air_date } = props;
   return (
-    <>
-      <Head>
-        <title>{name} - Rick And Morty Next.js App</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <div>
-        <p>{episode}</p>
-        <h1>{name}</h1>
-        <p>{air_date}</p>
+    <Layout>
+      <Container>
+        <Row>
+          <Col>
+            <p>{episode}</p>
+            <h1>{name}</h1>
+            <p>Air date: {air_date}</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <h3>Characters in this episode:</h3>
+          </Col>
+        </Row>
         <div>
-          {characters.map((i) => (
-            <div key={i.id}>{i.name}</div>
-          ))}
+          <div>
+            {characters.map((i) => (
+              <div key={i.id}>{i.name}</div>
+            ))}
+          </div>
         </div>
-      </div>
-    </>
+      </Container>
+    </Layout>
   );
 };
 

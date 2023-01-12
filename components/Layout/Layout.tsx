@@ -1,17 +1,12 @@
 // next imports
 import Head from "next/head";
 
-// bootstrap imports
-import Container from "react-bootstrap/esm/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-
 // components imports
 import Header from "./Header";
 
 interface LayoutProps {
   title?: string;
-  children?: React.ReactElement<any>;
+  children?: React.ReactElement<any> | React.ReactElement<any>[];
 }
 
 const Layout = ({ title, children }: LayoutProps) => {

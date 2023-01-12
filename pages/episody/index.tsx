@@ -42,7 +42,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const params = context.params!;
+  const params = context.params!; // not null assertion because of ts
   const data = await getSingleEpisode(params.id);
 
   return {
