@@ -34,6 +34,21 @@ const Home: NextPage<Props> = (props) => {
 
   return (
     <Layout>
+      <Container fluid>
+        <Row>
+          <Col
+            className="bg-dark text-light"
+            style={{
+              height: 200,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <h2 className="text-center">Welcome to Rick and Morty App!</h2>
+          </Col>
+        </Row>
+      </Container>
       <Container>
         <Row>
           <main>
