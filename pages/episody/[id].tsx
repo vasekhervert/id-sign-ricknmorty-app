@@ -8,10 +8,10 @@ import Col from "react-bootstrap/Col";
 
 // components imports
 import Layout from "../../components/Layout/Layout";
+import Character from "../../components/Character";
 
 // other imports
 import { getAllEpisodesIds, getSingleEpisode } from "../../helpers";
-import Character from "../../components/Character";
 
 interface Props {
   air_date: string;
@@ -30,28 +30,40 @@ const Episode: NextPage<Props> = (props) => {
   const { name, episode, characters, air_date } = props;
   return (
     <Layout>
-      <Container>
-        <Row>
-          <Col>
-            <p>{episode}</p>
-            <h1>{name}</h1>
-            <p>Air date: {air_date}</p>
-          </Col>
-        </Row>
+      <Container fluid className="bg-dark text-light">
+        <Container
+          style={{
+            height: 200,
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          {" "}
+          <Row>
+            <Col>
+              <h1>
+                {name}
+                <span className="fs-6"> {episode}</span>
+              </h1>
+              <p>Air date: {air_date}</p>
+            </Col>
+          </Row>
+        </Container>
+      </Container>
+      <Container className="mt-4">
         <Row>
           <Col>
             <h3>Characters in this episode:</h3>
           </Col>
         </Row>
-        <div>
-          <div>
-            {characters.map((i) => (
-              <div key={i.id}>
-                <Character props={i} />
-              </div>
-            ))}
-          </div>
-        </div>
+
+        <Row>
+          {characters.map((i) => (
+            <Col key={i.id} xs={6} md={2}>
+              <Character props={i} />
+            </Col>
+          ))}
+        </Row>
       </Container>
     </Layout>
   );
