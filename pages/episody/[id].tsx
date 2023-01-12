@@ -11,6 +11,7 @@ import Layout from "../../components/Layout/Layout";
 
 // other imports
 import { getAllEpisodesIds, getSingleEpisode } from "../../helpers";
+import Character from "../../components/Character";
 
 interface Props {
   air_date: string;
@@ -45,7 +46,9 @@ const Episode: NextPage<Props> = (props) => {
         <div>
           <div>
             {characters.map((i) => (
-              <div key={i.id}>{i.name}</div>
+              <div key={i.id}>
+                <Character props={i} />
+              </div>
             ))}
           </div>
         </div>
