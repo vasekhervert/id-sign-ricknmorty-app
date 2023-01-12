@@ -12,6 +12,7 @@ import Character from "../../components/Character";
 
 // other imports
 import { getAllEpisodesIds, getSingleEpisode } from "../../helpers";
+import Hero from "../../components/Layout/Hero";
 
 interface Props {
   air_date: string;
@@ -28,27 +29,16 @@ interface Props {
 
 const Episode: NextPage<Props> = (props) => {
   const { name, episode, characters, air_date } = props;
+
   return (
     <Layout>
-      <Container fluid className="bg-dark text-light">
-        <Container
-          className="d-flex align-items-center"
-          style={{
-            height: 200,
-          }}
-        >
-          {" "}
-          <Row>
-            <Col>
-              <h1>
-                {name}
-                <span className="fs-6"> {episode}</span>
-              </h1>
-              <p>Air date: {air_date}</p>
-            </Col>
-          </Row>
-        </Container>
-      </Container>
+      <Hero>
+        <h2>{name}</h2>
+        <p>
+          <span className="fw-bold">{episode}</span> | Air date: {air_date}
+        </p>
+      </Hero>
+
       <Container className="mt-4">
         <Row>
           <Col>
@@ -62,6 +52,13 @@ const Episode: NextPage<Props> = (props) => {
               <Character props={i} />
             </Col>
           ))}
+        </Row>
+      </Container>
+      <Container className="mt-4">
+        <Row>
+          <Col>
+            <h3>Comments:</h3>
+          </Col>
         </Row>
       </Container>
     </Layout>

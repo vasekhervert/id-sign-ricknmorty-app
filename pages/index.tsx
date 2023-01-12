@@ -11,6 +11,7 @@ import Col from "react-bootstrap/Col";
 import client from "../lib/apollo-client";
 import { EPISODES_QUERY } from "../queries";
 import Layout from "../components/Layout/Layout";
+import Hero from "../components/Layout/Hero";
 
 interface Props {
   episodes: {
@@ -33,18 +34,10 @@ const Home: NextPage<Props> = (props) => {
 
   return (
     <Layout>
-      <Container fluid>
-        <Row>
-          <Col
-            className="bg-dark text-light d-flex align-items-center justify-content-center"
-            style={{
-              height: 200,
-            }}
-          >
-            <h2 className="text-center">Welcome to Rick and Morty App!</h2>
-          </Col>
-        </Row>
-      </Container>
+      <Hero>
+        <h2 className="text-center">Welcome to Rick and Morty App!</h2>
+      </Hero>
+
       <Container>
         <Row>
           <main>
