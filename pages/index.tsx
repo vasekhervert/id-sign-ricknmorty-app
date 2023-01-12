@@ -1,5 +1,4 @@
 // next imports
-import Head from "next/head";
 import Link from "next/link";
 import { NextPage } from "next";
 
@@ -37,12 +36,9 @@ const Home: NextPage<Props> = (props) => {
       <Container fluid>
         <Row>
           <Col
-            className="bg-dark text-light"
+            className="bg-dark text-light d-flex align-items-center justify-content-center"
             style={{
               height: 200,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
             }}
           >
             <h2 className="text-center">Welcome to Rick and Morty App!</h2>
@@ -52,6 +48,8 @@ const Home: NextPage<Props> = (props) => {
       <Container>
         <Row>
           <main>
+            <h3 className="mt-4">Episodes: </h3>
+
             <ul>
               {episodes.results.map((i) => (
                 <li key={i.id}>

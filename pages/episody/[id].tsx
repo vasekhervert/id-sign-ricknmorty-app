@@ -32,10 +32,9 @@ const Episode: NextPage<Props> = (props) => {
     <Layout>
       <Container fluid className="bg-dark text-light">
         <Container
+          className="d-flex align-items-center"
           style={{
             height: 200,
-            display: "flex",
-            alignItems: "center",
           }}
         >
           {" "}
