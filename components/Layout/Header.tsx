@@ -10,9 +10,9 @@ export default function Header() {
   return (
     <header>
       <Container>
-        <Row className="justify-content-between">
+        <Row className="justify-content-between py-4">
           <Col>
-            <Link href="/">
+            <Link href="/" className="text-black text-decoration-none">
               <h1 className="fs-4">Rick and Morty Next.js App</h1>
             </Link>
           </Col>
