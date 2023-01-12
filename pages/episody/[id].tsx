@@ -9,6 +9,7 @@ import Col from "react-bootstrap/Col";
 // components imports
 import Layout from "../../components/Layout/Layout";
 import Character from "../../components/Character";
+import Comments from "../../components/Comments/CommentsContainer";
 
 // other imports
 import { getAllEpisodesIds, getSingleEpisode } from "../../helpers";
@@ -54,13 +55,8 @@ const Episode: NextPage<Props> = (props) => {
           ))}
         </Row>
       </Container>
-      <Container className="mt-4">
-        <Row>
-          <Col>
-            <h3>Comments:</h3>
-          </Col>
-        </Row>
-      </Container>
+
+      <Comments />
     </Layout>
   );
 };
