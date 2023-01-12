@@ -1,8 +1,17 @@
+// next imports
 import Head from "next/head";
+import Link from "next/link";
 import { NextPage } from "next";
+
+// bootstrap imports
+import Container from "react-bootstrap/esm/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+
+// other imports
 import client from "../lib/apollo-client";
 import { EPISODES_QUERY } from "../queries";
-import Link from "next/link";
+import Layout from "../components/Layout/Layout";
 
 interface Props {
   episodes: {
@@ -24,24 +33,23 @@ const Home: NextPage<Props> = (props) => {
   const { episodes } = props;
 
   return (
-    <>
-      <Head>
-        <title>Rick And Morty Next.js App</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main>
-        <ul>
-          {episodes.results.map((i) => (
-            <li key={i.id}>
-              <Link href={`/episody/${i.id}`}>
-                {i.episode} - {i.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </main>
-    </>
+    <Layout>
+      <Container>
+        <Row>
+          <main>
+            <ul>
+              {episodes.results.map((i) => (
+                <li key={i.id}>
+                  <Link href={`/episody/${i.id}`}>
+                    {i.episode} - {i.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </main>
+        </Row>
+      </Container>
+    </Layout>
   );
 };
 
