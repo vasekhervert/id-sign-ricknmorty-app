@@ -1,5 +1,5 @@
+import { useState } from "react";
 import Card from "react-bootstrap/Card";
-
 import Image from "next/image";
 
 interface Char {
@@ -15,18 +15,34 @@ interface Char {
 }
 
 const Character = ({ props }: Char) => {
+  const [shouldShowMoreInfo, setShouldShowMoreInfo] = useState<boolean>(false);
   const { id, name, species, image, origin } = props;
   return (
-    <Card className="mb-4" style={{ cursor: "pointer" }}>
+    <Card
+      className="mb-4"
+      style={{ cursor: "pointer", minHeight: 190 }}
+      onClick={() => {
+        setShouldShowMoreInfo(!shouldShowMoreInfo);
+      }}
+    >
       <Card.Body>
         <Image
           alt={`${name}'s Avatar`}
           src={image}
           width={100}
           height={100}
-          className="m-auto d-block"
+          className={`m-auto d-block ${shouldShowMoreInfo && "rounded"}`}
         />
-        <Card.Title className="text-center mt-2">{name}</Card.Title>
+        <Card.Title className="text-center mt-2 fs-6">{name}</Card.Title>
+        {shouldShowMoreInfo && (
+          <Card.Text>
+            <p>
+              Species: {species}
+              <br />
+              Origin: {origin.name}
+            </p>
+          </Card.Text>
+        )}
       </Card.Body>
     </Card>
   );
