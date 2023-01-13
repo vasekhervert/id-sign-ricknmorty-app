@@ -1,18 +1,17 @@
 interface CommentProps {
-  author?: string;
-  email: string;
+  author: string;
   message: string;
-  date: string;
+  timestamp: number;
 }
 
 const SingleComment = (props: CommentProps) => {
-  const { author, email, message, date } = props;
+  const { author, message, timestamp } = props;
   return (
     <div className="border rounded">
       <p className="p-2 border-bottom">
-        <span className="fw-bold">{author ? author : email}</span> on {date}:{" "}
+        <span className="fw-bold">{author}</span> on {timestamp}:{" "}
       </p>
-      <p className="p-2">Im Mr. Meeseeks, look at me!</p>
+      <p className="p-2">{message}</p>
     </div>
   );
 };

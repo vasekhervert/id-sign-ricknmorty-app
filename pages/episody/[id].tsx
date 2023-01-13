@@ -9,27 +9,36 @@ import Col from "react-bootstrap/Col";
 // components imports
 import Layout from "../../components/Layout/Layout";
 import Character from "../../components/Character";
-import Comments from "../../components/Comments/CommentsContainer";
+import CommentsContainer from "../../components/Comments/CommentsContainer";
 
 // other imports
 import { getAllEpisodesIds, getSingleEpisode } from "../../helpers";
 import Hero from "../../components/Layout/Hero";
+import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 
 interface Props {
-  air_date: string;
-  characters: {
-    id: string;
+  episode: {
+    air_date: string;
+    characters: {
+      id: string;
+      name: string;
+      species: string;
+      image: string;
+      origin: { name: string };
+    }[];
+    episode: string;
     name: string;
-    species: string;
-    image: string;
-    origin: { name: string };
+  };
+  comments: {
+    name?: string;
+    email: string;
+    timestamp: number;
+    message: string;
   }[];
-  episode: string;
-  name: string;
 }
 
 const Episode: NextPage<Props> = (props) => {
-  const { name, episode, characters, air_date } = props;
+  const { name, episode, characters, air_date } = props.episode;
 
   return (
     <Layout>
@@ -56,7 +65,7 @@ const Episode: NextPage<Props> = (props) => {
         </Row>
       </Container>
 
-      <Comments />
+      <CommentsContainer comments={props.comments} />
     </Layout>
   );
 };
@@ -78,8 +87,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const params = context.params!;
   const data = await getSingleEpisode(params.id);
 
+  console.log(data);
+  const res = await fetch("http://localhost:3000/api/comments");
+  const comments = await res.json();
+  const commentsArray = Object.values(JSON.parse(comments));
+
   return {
-    props: data.episode,
+    props: { episode: data.episode, comments: commentsArray },
   };
 };
 

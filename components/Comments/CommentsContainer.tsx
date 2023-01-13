@@ -7,7 +7,18 @@ import Col from "react-bootstrap/Col";
 import SingleComment from "./SingleComment";
 import CommentsForm from "./CommentsForm";
 
-export default function Comments() {
+interface CommentsProps {
+  comments: {
+    name?: string;
+    email: string;
+    timestamp: number;
+    message: string;
+  }[];
+}
+
+function CommentsContainer(comments: CommentsProps) {
+  const commentsArray = comments.comments;
+
   return (
     <Container className="mt-4">
       <Row>
@@ -17,14 +28,20 @@ export default function Comments() {
               <h3>Comments:</h3>
             </Col>
           </Row>
-          <Row>
-            <SingleComment
-              author="Mr. Meeseeks"
-              email="vajco@slepici.cz"
-              message="Im Mr. Meeseeks, look at me!"
-              date="12.1.2023"
-            />
-          </Row>
+          {commentsArray.length > 0 ? (
+            commentsArray.map((i) => (
+              <Row key={i.timestamp}>
+                <SingleComment
+                  author={i.name || i.email}
+                  message={i.message}
+                  timestamp={i.timestamp}
+                />
+              </Row>
+            ))
+          ) : (
+            <p>This episode does not have any comments. Be first to add one.</p>
+          )}
+
           <Row className="mt-2">
             <Col>
               <h4>Add comment:</h4>
@@ -36,3 +53,5 @@ export default function Comments() {
     </Container>
   );
 }
+
+export default CommentsContainer;
