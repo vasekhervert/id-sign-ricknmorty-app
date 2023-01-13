@@ -5,14 +5,7 @@ import Col from "react-bootstrap/Col";
 
 // components imports
 import SingleComment from "./SingleComment";
-import { Formik, Field, Form } from "formik";
-
-interface FormValues {
-  nickname: string;
-  email: string;
-  message: string;
-  confirm: boolean;
-}
+import CommentsForm from "./CommentsForm";
 
 export default function Comments() {
   return (
@@ -37,60 +30,7 @@ export default function Comments() {
               <h4>Add comment:</h4>
             </Col>
           </Row>
-          <Row>
-            <Col>
-              <Formik
-                initialValues={{
-                  nickname: "",
-                  email: "",
-                  message: "",
-                  confirm: false,
-                }}
-                onSubmit={(values: FormValues) => {
-                  console.log(values);
-                }}
-              >
-                <Form>
-                  <Container>
-                    <Row>
-                      <Col>
-                        <label htmlFor="nickname">Nickname:</label>
-                        <Field id="nickname" name="nickname" />
-                      </Col>
-                      <Col>
-                        <label htmlFor="email">Email:</label>
-                        <Field
-                          id="email"
-                          name="email"
-                          placeholder="example@email.com"
-                          type="email"
-                        />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        <label>Comment:</label>
-                        <Field as="textarea" id="message" name="message" />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        <label>
-                          <Field type="checkbox" name="confirm" />I agree with
-                          the publication of the completed data
-                        </label>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        <button type="submit">Submit</button>
-                      </Col>
-                    </Row>
-                  </Container>
-                </Form>
-              </Formik>
-            </Col>
-          </Row>
+          <CommentsForm />
         </Col>
       </Row>
     </Container>
