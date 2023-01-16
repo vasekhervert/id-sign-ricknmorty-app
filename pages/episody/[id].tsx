@@ -14,7 +14,6 @@ import CommentsContainer from "../../components/Comments/CommentsContainer";
 // other imports
 import { getAllEpisodesIds, getSingleEpisode } from "../../helpers";
 import Hero from "../../components/Layout/Hero";
-import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 
 interface Props {
   episode: {
@@ -87,8 +86,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const params = context.params!;
   const data = await getSingleEpisode(params.id);
 
-  console.log(data);
-  const res = await fetch("http://localhost:3000/api/comments");
+  const res = await fetch(`http://localhost:3000/api/comments?id=${params.id}`);
   const comments = await res.json();
   const commentsArray = Object.values(JSON.parse(comments));
 
