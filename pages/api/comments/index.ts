@@ -7,10 +7,17 @@ type Data = string
 
 export default async function handler(req: NextApiRequest,
     res: NextApiResponse<Data>) {
+    
+    const { id } = req.query;
+  
   //Find the absolute path of the json directory
   const jsonDirectory = path.join(process.cwd(), 'json');
-  //Read the json data file data.json
-  const fileContents = await fs.readFile(jsonDirectory + '/comments.json', 'utf8');
-  //Return the content of the data file in json format
-  res.status(200).json(fileContents);
+  const filePath = jsonDirectory + `/episode-${id}.json`;
+  try {
+    console.log('hello');
+    const fileContents = await fs.readFile(filePath, 'utf8');
+    res.status(200).json(fileContents);
+  } catch(error) {
+    res.status(500).json('{"error": "No such file."}');
+  }  
 }
