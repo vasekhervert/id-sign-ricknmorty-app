@@ -17,7 +17,7 @@ export async function getAllEpisodesIds() {
     query: EPISODES_QUERY,
   });   
   //@ts-ignore
-  const ids = data.episodes.results.map((i: object) => i.id)
+  const ids = data.episodes.results.map((i: object) => i.id) // jak nadefinovat ten tajp i.id tady?
 
   return ids;
 }
