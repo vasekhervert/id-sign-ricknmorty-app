@@ -18,6 +18,7 @@ interface CommentsProps {
 
 function CommentsContainer(comments: CommentsProps) {
   const commentsArray = comments.comments;
+  console.log(commentsArray);
 
   return (
     <Container className="mt-4">
