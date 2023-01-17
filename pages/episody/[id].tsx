@@ -87,11 +87,17 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const data = await getSingleEpisode(params.id);
 
   const res = await fetch(`http://localhost:3000/api/comments?id=${params.id}`);
-  const comments = await res.json();
-  const commentsArray = Object.values(JSON.parse(comments));
+  let commentsArray: unknown[];
+  if (!res.ok) {
+    commentsArray = [];
+  } else {
+    const comments = await res.json();
+    commentsArray = Object.values(JSON.parse(comments));
+  }
 
   return {
     props: { episode: data.episode, comments: commentsArray },
+    revalidate: 86400,
   };
 };
 
