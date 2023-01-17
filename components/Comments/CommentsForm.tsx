@@ -1,5 +1,5 @@
 // next imports
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 //react imports
 import { useState } from "react";
@@ -49,7 +49,7 @@ export default function CommentsForm() {
           validationSchema={CommentSchema}
           onSubmit={(values: FormValues) => {
             setLoading(true);
-            postComment(id, values).then((data) => {
+            postComment(id, router.asPath, values).then((data) => {
               setLoading(false);
             });
           }}
