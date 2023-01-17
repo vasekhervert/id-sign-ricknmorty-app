@@ -36,11 +36,11 @@ const Character = ({ props }: Char) => {
         <Card.Title className="text-center mt-2 fs-6">{name}</Card.Title>
         {shouldShowMoreInfo && (
           <Card.Text>
-            <p>
+            <span>
               Species: {species}
               <br />
               Origin: {origin.name}
-            </p>
+            </span>
           </Card.Text>
         )}
       </Card.Body>
