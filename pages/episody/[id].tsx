@@ -86,7 +86,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const params = context.params!;
   const data = await getSingleEpisode(params.id);
 
-  const res = await fetch(`http://localhost:3000/api/comments?id=${params.id}`);
+  const res = await fetch(
+    `${process.env.BASE_URL}/api/comments?id=${params.id}`
+  );
   let commentsArray: unknown[];
   if (!res.ok) {
     commentsArray = [];
