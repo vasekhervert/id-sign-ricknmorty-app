@@ -43,14 +43,16 @@ async function addComment(req: NextApiRequest,
       res: NextApiResponse<Data>) {
 
         const {id} = req.query;
-        const content = JSON.stringify({comment: req.body});
+        const {revalPath, ...restOfBody} = req.body;
+        const content = JSON.stringify({comment: {...restOfBody}});
         
-
         const jsonDirectory = path.join(process.cwd(), 'json');
         const filePath = jsonDirectory + `/episode-${id}.json`;
 
         try{
-          fs.writeFile(filePath, content);
+          fs.writeFile(filePath, content); // je potreba nejdrive precist obsah toho file (existuje-li) a pridat k nemu novy comment
+          const reval = fetch(`${process.env.BASE_URL}/api/revalidate?secret=${process.env.REVALIDATION_SECRET}&path=${revalPath}`) 
+          
           res.status(200).send('Success')
         } catch(err) {
           res.status(500).send('An error occured.')
