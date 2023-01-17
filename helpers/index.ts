@@ -62,6 +62,7 @@ export function makeDateAndTime(timestamp: number) {
 
 export async function postComment (
   id: string | string[] | undefined,
+  revalPath: string,
   formData: {
     name?: string;
     email: string;
@@ -71,7 +72,7 @@ export async function postComment (
 )  {
   const timestamp = Date.now();
   const { publicationConsent, ...restOfForm } = formData; // get rid of consent proprty, dont need it
-  const requestBody = {...restOfForm, timestamp};
+  const requestBody = {...restOfForm, timestamp, revalPath};
   
   const response = await fetch(`/api/comments?id=${id}`, {
     method: 'POST',
@@ -81,8 +82,6 @@ export async function postComment (
     },
     body: JSON.stringify(requestBody)
   })
-
-  console.log(process.env.BASE_URL);
   
   return response.json();
 };
