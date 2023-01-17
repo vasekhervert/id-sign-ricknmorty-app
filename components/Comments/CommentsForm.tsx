@@ -1,3 +1,9 @@
+// next imports
+import { Router, useRouter } from "next/router";
+
+//react imports
+import { useState } from "react";
+
 // bootstrap imports
 import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
@@ -6,6 +12,7 @@ import Col from "react-bootstrap/Col";
 // other imports
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
+import { postComment } from "../../helpers";
 
 interface FormValues {
   nickname: string;
@@ -25,6 +32,10 @@ const CommentSchema = Yup.object().shape({
 });
 
 export default function CommentsForm() {
+  const [loading, setLoading] = useState<boolean>(false);
+  const router = useRouter();
+  const { id } = router.query;
+
   return (
     <Row>
       <Col>
@@ -37,16 +48,20 @@ export default function CommentsForm() {
           }}
           validationSchema={CommentSchema}
           onSubmit={(values: FormValues) => {
-            console.log(values);
+            setLoading(true);
+            postComment(id, values).then((data) => {
+              setLoading(false);
+              console.log(data);
+            });
           }}
         >
           {({ errors, touched }) => (
             <Form>
-              <Container>
+              <Container className="mb-4">
                 <Row>
                   <Col>
                     <label htmlFor="nickname">Nickname:</label>
-                    <Field id="nickname" name="nickname" />
+                    <Field id="nickname" name="nickname" type="text" />
                   </Col>
                   <Col>
                     <label htmlFor="email">Email:</label>
@@ -56,7 +71,9 @@ export default function CommentsForm() {
                       placeholder="example@email.com"
                       type="email"
                     />
-                    {errors.email && touched.email && <p>{errors.email}</p>}
+                    {errors.email && touched.email && (
+                      <p className="text-danger">{errors.email}</p>
+                    )}
                   </Col>
                 </Row>
                 <Row>
@@ -64,11 +81,11 @@ export default function CommentsForm() {
                     <label>Comment:</label>
                     <Field as="textarea" id="message" name="message" />
                     {errors.message && touched.message && (
-                      <p>{errors.message}</p>
+                      <p className="text-danger">{errors.message}</p>
                     )}
                   </Col>
                 </Row>
-                <Row>
+                <Row className="mb-4">
                   <Col>
                     <label htmlFor="publicationConsent">
                       <Field
@@ -80,13 +97,17 @@ export default function CommentsForm() {
                     </label>
                     {errors.publicationConsent &&
                       touched.publicationConsent && (
-                        <p>{errors.publicationConsent}</p>
+                        <p className="text-danger">
+                          {errors.publicationConsent}
+                        </p>
                       )}
                   </Col>
                 </Row>
                 <Row>
                   <Col>
-                    <button type="submit">Submit</button>
+                    <button type="submit" className="btn btn-primary">
+                      Submit
+                    </button>
                   </Col>
                 </Row>
               </Container>
