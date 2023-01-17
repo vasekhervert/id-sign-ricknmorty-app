@@ -37,24 +37,27 @@ const Home: NextPage<Props> = (props) => {
       <Hero>
         <h2 className="text-center">Welcome to Rick and Morty App!</h2>
       </Hero>
+      <main>
+        <Container>
+          <Row>
+            <Col md={{ span: 10, offset: 1 }} lg={{ span: 8, offset: 2 }}>
+              <h3 className="mt-4">Episodes: </h3>
 
-      <Container>
-        <Row>
-          <main>
-            <h3 className="mt-4">Episodes: </h3>
-
-            <ul>
               {episodes.results.map((i) => (
-                <li key={i.id}>
-                  <Link href={`/episody/${i.id}`}>
-                    {i.episode} - {i.name}
-                  </Link>
-                </li>
+                <Link
+                  href={`/episody/${i.id}`}
+                  key={i.id}
+                  className="text-decoration-none text-black"
+                >
+                  <div className="border rounded p-4 my-2">
+                    {i.episode} - <span className="">{i.name}</span>
+                  </div>
+                </Link>
               ))}
-            </ul>
-          </main>
-        </Row>
-      </Container>
+            </Col>
+          </Row>
+        </Container>
+      </main>
     </Layout>
   );
 };
