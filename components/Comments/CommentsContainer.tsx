@@ -9,7 +9,7 @@ import CommentsForm from "./CommentsForm";
 
 interface CommentsProps {
   comments: {
-    name?: string;
+    nickname?: string;
     email: string;
     timestamp: number;
     message: string;
@@ -18,7 +18,6 @@ interface CommentsProps {
 
 function CommentsContainer(comments: CommentsProps) {
   const commentsArray = comments.comments;
-  console.log(commentsArray);
 
   return (
     <Container className="mt-4">
@@ -33,17 +32,21 @@ function CommentsContainer(comments: CommentsProps) {
             commentsArray.map((i) => (
               <Row key={i.timestamp}>
                 <SingleComment
-                  author={i.name || i.email}
+                  author={i.nickname || i.email}
                   message={i.message}
                   timestamp={i.timestamp}
                 />
               </Row>
             ))
           ) : (
-            <p>This episode does not have any comments. Be first to add one.</p>
+            <Row className="my-4">
+              <p className="text-center">
+                This episode does not have any comments. Be first to add one.
+              </p>
+            </Row>
           )}
 
-          <Row className="mt-2">
+          <Row className="my-4">
             <Col>
               <h4>Add comment:</h4>
             </Col>

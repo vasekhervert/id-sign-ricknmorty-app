@@ -1,3 +1,5 @@
+import { makeDateAndTime } from "../../helpers";
+
 interface CommentProps {
   author: string;
   message: string;
@@ -6,10 +8,12 @@ interface CommentProps {
 
 const SingleComment = (props: CommentProps) => {
   const { author, message, timestamp } = props;
+
   return (
     <div className="border rounded">
       <p className="p-2 border-bottom">
-        <span className="fw-bold">{author}</span> on {timestamp}:{" "}
+        <span className="fw-bold">{author}</span> on{" "}
+        {makeDateAndTime(timestamp)}:{" "}
       </p>
       <p className="p-2">{message}</p>
     </div>

@@ -51,7 +51,6 @@ export default function CommentsForm() {
             setLoading(true);
             postComment(id, values).then((data) => {
               setLoading(false);
-              console.log(data);
             });
           }}
         >
