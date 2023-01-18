@@ -14,6 +14,7 @@ import CommentsContainer from "../../components/Comments/CommentsContainer";
 // other imports
 import { getAllEpisodesIds, getSingleEpisode } from "../../helpers";
 import Hero from "../../components/Layout/Hero";
+import * as fs from "fs";
 
 interface Props {
   episode: {
@@ -86,19 +87,19 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const params = context.params!;
   const data = await getSingleEpisode(params.id);
 
-  const res = await fetch(
-    `${process.env.BASE_URL}/api/comments?id=${params.id}`
-  );
-  let commentsArray: unknown[];
-  if (!res.ok) {
-    commentsArray = [];
+  const filePath = `json/episode-${params.id}.json`;
+  let fileContents: string;
+
+  if (fs.existsSync(filePath)) {
+    fileContents = fs.readFileSync(filePath, "utf8");
   } else {
-    const comments = await res.json();
-    commentsArray = Object.values(JSON.parse(comments));
+    fileContents = `{}`;
   }
 
+  const comments = Object.values(JSON.parse(fileContents));
+
   return {
-    props: { episode: data.episode, comments: commentsArray },
+    props: { episode: data.episode, comments: comments },
     revalidate: 86400,
   };
 };
