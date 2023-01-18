@@ -51,8 +51,7 @@ async function addComment(req: NextApiRequest,
 
         try{
           fs.writeFile(filePath, content); // je potreba nejdrive precist obsah toho file (existuje-li) a pridat k nemu novy comment
-          const reval = fetch(`${process.env.BASE_URL}/api/revalidate?secret=${process.env.REVALIDATION_SECRET}&path=${revalPath}`) 
-          
+          const reval = fetch(`${process.env.BASE_URL}/api/revalidate?secret=${process.env.REVALIDATION_SECRET}&path=${revalPath}`)
           res.status(200).send('Success')
         } catch(err) {
           res.status(500).send('An error occured.')
