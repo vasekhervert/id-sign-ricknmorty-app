@@ -51,17 +51,21 @@ const Episode: NextPage<Props> = (props) => {
 
       <Container className="mt-4">
         <Row>
-          <Col>
+          <Col md={{ span: 10, offset: 1 }} lg={{ span: 8, offset: 2 }}>
             <h3>Characters in this episode:</h3>
           </Col>
         </Row>
 
         <Row>
-          {characters.map((i) => (
-            <Col key={i.id} xs={6} md={2}>
-              <Character props={i} />
-            </Col>
-          ))}
+          <Col md={{ span: 10, offset: 1 }} lg={{ span: 8, offset: 2 }}>
+            <Row>
+              {characters.map((i) => (
+                <Col key={i.id} xs={6} md={2} lg={3}>
+                  <Character props={i} />
+                </Col>
+              ))}
+            </Row>
+          </Col>
         </Row>
       </Container>
 
