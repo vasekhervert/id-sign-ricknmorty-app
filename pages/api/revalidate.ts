@@ -21,7 +21,6 @@ export default async function handler(
       }      
     
       try {
-        console.log('revalidating path: ',revalidatePath );
         await res.revalidate(revalidatePath)
         return res.json({
           revalidated: true,
