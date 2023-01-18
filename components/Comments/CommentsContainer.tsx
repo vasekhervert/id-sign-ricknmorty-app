@@ -30,7 +30,7 @@ function CommentsContainer(comments: CommentsProps) {
           </Row>
           {commentsArray.length > 0 ? (
             commentsArray.map((i) => (
-              <Row key={i.timestamp}>
+              <Row key={i.timestamp} className="mb-2">
                 <SingleComment
                   author={i.nickname || i.email}
                   message={i.message}
