@@ -23,31 +23,31 @@ const Episodes: NextPage<Props> = (props) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div></div>
+      <div>episody</div>
     </>
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const ids = await getAllEpisodesIds();
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   const ids = await getAllEpisodesIds();
 
-  const paths = ids.map((i: object) => ({
-    params: { id: i },
-  }));
+//   const paths = ids.map((i: object) => ({
+//     params: { id: i },
+//   }));
 
-  return {
-    paths,
-    fallback: false,
-  };
-};
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const params = context.params!; // not null assertion because of ts
-  const data = await getSingleEpisode(params.id);
+// export const getStaticProps: GetStaticProps = async (context) => {
+//   const params = context.params!; // not null assertion because of ts
+//   const data = await getSingleEpisode(params.id);
 
-  return {
-    props: data.episode,
-  };
-};
+//   return {
+//     props: data.episode,
+//   };
+// };
 
 export default Episodes;
