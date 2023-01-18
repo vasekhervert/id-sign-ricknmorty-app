@@ -7,7 +7,7 @@ type Data = {
   revalidated?: boolean;
 }
 
-export default async function revalidate(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
@@ -21,7 +21,6 @@ export default async function revalidate(
       }      
     
       try {
-        console.log('im trajin')
         await res.revalidate(revalidatePath)
         return res.json({
           revalidated: true,
