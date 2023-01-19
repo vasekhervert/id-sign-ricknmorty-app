@@ -35,10 +35,12 @@ interface Props {
     timestamp: number;
     message: string;
   }[];
+  epis: {};
 }
 
 const Episode: NextPage<Props> = (props) => {
   const { name, episode, characters, air_date } = props.episode;
+  console.log(props.epis);
 
   return (
     <Layout>
@@ -77,7 +79,7 @@ const Episode: NextPage<Props> = (props) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const ids = await getAllEpisodesIds();
 
-  const paths = ids.map((i: object) => ({
+  const paths = ids.map((i: string) => ({
     params: { id: i },
   }));
 
@@ -103,7 +105,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const comments = Object.values(JSON.parse(fileContents));
 
   return {
-    props: { episode: data.episode, comments: comments },
+    props: {
+      episode: data.episode,
+      comments: comments,
+    },
     revalidate: 86400, // 86400 s = 1 d
   };
 };
