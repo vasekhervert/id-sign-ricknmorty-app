@@ -31,6 +31,7 @@ interface Props {
 
 const Home: NextPage<Props> = (props) => {
   const { episodes } = props;
+  console.log(props);
 
   return (
     <Layout>
@@ -45,7 +46,7 @@ const Home: NextPage<Props> = (props) => {
 
               {episodes.results.map((i) => (
                 <Link
-                  href={`/episody/${i.id}`}
+                  href={`/episode/${i.id}`}
                   key={i.id}
                   className="text-decoration-none text-black"
                 >
