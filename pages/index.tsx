@@ -12,26 +12,19 @@ import client from "../lib/apollo-client";
 import { EPISODES_QUERY } from "../queries";
 import Layout from "../components/Layout/Layout";
 import Hero from "../components/Layout/Hero";
+import { getAllEpisodes } from "../helpers";
 
 interface Props {
   episodes: {
-    info: {
-      count: number;
-      pages: number;
-      prev: number | null;
-      next: number | null;
-    };
-    results: {
-      name: string;
-      id: string;
-      episode: string;
-    }[];
-  };
+    name: string;
+    id: string;
+    episode: string;
+  }[];
 }
 
 const Home: NextPage<Props> = (props) => {
   const { episodes } = props;
-  console.log(props);
+  console.log(episodes);
 
   return (
     <Layout>
@@ -44,7 +37,7 @@ const Home: NextPage<Props> = (props) => {
             <Col md={{ span: 10, offset: 1 }} lg={{ span: 8, offset: 2 }}>
               <h3 className="mt-4">Episodes: </h3>
 
-              {episodes.results.map((i) => (
+              {episodes.map((i) => (
                 <Link
                   href={`/episode/${i.id}`}
                   key={i.id}
@@ -64,12 +57,13 @@ const Home: NextPage<Props> = (props) => {
 };
 
 export async function getStaticProps() {
+  const epis = await getAllEpisodes(1);
   const { data } = await client.query({
     query: EPISODES_QUERY,
   });
 
   return {
-    props: data,
+    props: { episodes: epis },
   };
 }
 
