@@ -8,56 +8,67 @@ import Col from "react-bootstrap/Col";
 
 // components imports
 import Layout from "../../components/Layout/Layout";
+import Hero from "../../components/Layout/Hero";
+import EpisodesList from "../../components/EpisodesList";
+import CustomPagination from "../../components/CustomPagination";
 
 // other imports
-import { getAllEpisodesIds, getSingleEpisode } from "../../helpers";
-import Hero from "../../components/Layout/Hero";
-import * as fs from "fs";
+import { getAllEpisodes, getEpisodesInfo } from "../../helpers";
 
 interface Props {
-  //   episode: {
-  //     air_date: string;
-  //     characters: {
-  //       id: string;
-  //       name: string;
-  //       species: string;
-  //       image: string;
-  //       origin: { name: string };
-  //     }[];
-  //     episode: string;
-  //     name: string;
-  //   };
-  //   comments: {
-  //     name?: string;
-  //     email: string;
-  //     timestamp: number;
-  //     message: string;
-  //   }[];
+  episodes: {
+    info: {
+      count: number;
+      pages: number;
+      prev: number | null;
+      next: number | null;
+    };
+    results: {
+      name: string;
+      id: string;
+      episode: string;
+    }[];
+  };
 }
 
 const Page: NextPage<Props> = (props) => {
+  const { episodes } = props;
+  const { info, results } = episodes;
+  const currentPage = info.next != null ? info.next - 1 : info.prev! + 1;
+
   return (
     <Layout>
       <Hero>
         <h2>Welcome to Rick and Morty App!</h2>
       </Hero>
+      <main>
+        <Container>
+          <Row>
+            <Col md={{ span: 10, offset: 1 }} lg={{ span: 8, offset: 2 }}>
+              <h3 className="mt-4">Episodes: </h3>
 
-      <Container className="mt-4">
-        <Row>
-          <Col md={{ span: 10, offset: 1 }} lg={{ span: 8, offset: 2 }}>
-            <h3>Episodes:</h3>
-          </Col>
-        </Row>
-      </Container>
+              <EpisodesList episodes={results} />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={{ span: 10, offset: 1 }} lg={{ span: 8, offset: 2 }}>
+              <CustomPagination currentPage={currentPage} pages={info.pages} />
+            </Col>
+          </Row>
+        </Container>
+      </main>
     </Layout>
   );
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const ids = await getAllEpisodesIds();
+  const { pages } = await getEpisodesInfo();
+  const pagesArr = Array.from({ length: pages - 1 }, (_, i) =>
+    (i + 2).toString()
+  ); // create array of page ids starting with 2 (1 is homepage) with length of number of pages - 1 (homepage)
 
-  const paths = ids.map((i: string) => ({
-    params: { id: i },
+  const paths = pagesArr.map((i: string) => ({
+    params: { page: i },
   }));
 
   return {
@@ -68,21 +79,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const params = context.params!;
-  const data = await getSingleEpisode(params.id);
-
-  const filePath = `json/episode-${params.id}.json`;
-  let fileContents: string;
-
-  if (fs.existsSync(filePath)) {
-    fileContents = fs.readFileSync(filePath, "utf8");
-  } else {
-    fileContents = `{}`;
-  }
-
-  const comments = Object.values(JSON.parse(fileContents));
+  const episodes = await getAllEpisodes(Number(params.page));
 
   return {
-    props: { episode: data.episode, comments: comments },
+    props: { ...episodes },
   };
 };
 

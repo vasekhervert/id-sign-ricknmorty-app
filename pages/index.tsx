@@ -1,5 +1,4 @@
 // next imports
-import Link from "next/link";
 import { NextPage } from "next";
 
 // bootstrap imports
@@ -7,24 +6,35 @@ import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-// other imports
-import client from "../lib/apollo-client";
-import { EPISODES_QUERY } from "../queries";
+// components imports
 import Layout from "../components/Layout/Layout";
 import Hero from "../components/Layout/Hero";
+import EpisodesList from "../components/EpisodesList";
+import CustomPagination from "../components/CustomPagination";
+
+// other imports
 import { getAllEpisodes } from "../helpers";
 
 interface Props {
   episodes: {
-    name: string;
-    id: string;
-    episode: string;
-  }[];
+    info: {
+      count: number;
+      pages: number;
+      prev: number | null;
+      next: number | null;
+    };
+    results: {
+      name: string;
+      id: string;
+      episode: string;
+    }[];
+  };
 }
 
 const Home: NextPage<Props> = (props) => {
   const { episodes } = props;
-  console.log(episodes);
+  const { info, results } = episodes;
+  const currentPage = info.next != null ? info.next - 1 : info.prev! + 1;
 
   return (
     <Layout>
@@ -37,17 +47,12 @@ const Home: NextPage<Props> = (props) => {
             <Col md={{ span: 10, offset: 1 }} lg={{ span: 8, offset: 2 }}>
               <h3 className="mt-4">Episodes: </h3>
 
-              {episodes.map((i) => (
-                <Link
-                  href={`/episode/${i.id}`}
-                  key={i.id}
-                  className="text-decoration-none text-black"
-                >
-                  <div className="border rounded p-4 my-2">
-                    {i.episode} - <span className="">{i.name}</span>
-                  </div>
-                </Link>
-              ))}
+              <EpisodesList episodes={results} />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={{ span: 10, offset: 1 }} lg={{ span: 8, offset: 2 }}>
+              <CustomPagination currentPage={currentPage} pages={info.pages} />
             </Col>
           </Row>
         </Container>
@@ -57,13 +62,10 @@ const Home: NextPage<Props> = (props) => {
 };
 
 export async function getStaticProps() {
-  const epis = await getAllEpisodes(1);
-  const { data } = await client.query({
-    query: EPISODES_QUERY,
-  });
+  const episodes = await getAllEpisodes(1);
 
   return {
-    props: { episodes: epis },
+    props: { ...episodes },
   };
 }
 
