@@ -40,7 +40,6 @@ interface Props {
 
 const Episode: NextPage<Props> = (props) => {
   const { name, episode, characters, air_date } = props.episode;
-  console.log(props.epis);
 
   return (
     <Layout>
