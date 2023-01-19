@@ -1,6 +1,24 @@
 import { gql } from "@apollo/client";
 import client from "../lib/apollo-client";
-import { EPISODES_QUERY } from "../queries";
+
+export async function getEpisodesInfo() {
+  const {data} = await client.query({
+    query: gql`
+      query {
+        episodes {
+          info {
+            count
+            pages
+            next
+            prev
+          }
+        }
+      }
+    `
+  })
+
+  return data.episodes.info;
+}
 
 export async function getEpisodesCount() {
   const { data } = await client.query({
@@ -37,9 +55,9 @@ export async function getAllEpisodes(page: number) {
   `,
   });   
   
-  const episodes = data.episodes.results.map((i: object) => i) 
+  
 
-  return episodes;
+  return data;
 }
 
 // export async function getAllEpisodesIds() {
@@ -54,9 +72,7 @@ export async function getAllEpisodes(page: number) {
 
 export async function getAllEpisodesIds() {
   const count = await getEpisodesCount();
-  const arr = Array.from({ length: count }, (_, i) => i + 1);
-  
-  return arr.map((i) => i.toString())
+  return Array.from({ length: count }, (_, i) => (i + 1).toString()); 
 }
 
 
