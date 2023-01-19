@@ -2,25 +2,63 @@ import { gql } from "@apollo/client";
 import client from "../lib/apollo-client";
 import { EPISODES_QUERY } from "../queries";
 
-export async function getAllEpisodes() {
+export async function getEpisodesCount() {
   const { data } = await client.query({
-    query: EPISODES_QUERY,
+    query: gql`
+    query {episodes{
+      info {
+        count
+      }
+    }}
+      
+    `,
+  });     
+
+  return data.episodes.info.count;
+}
+
+export async function getAllEpisodes(page: number) {
+  const { data } = await client.query({
+    query: gql`query {
+      episodes (page: ${page}) {
+        info {
+          count
+          pages
+          next
+          prev
+        }
+        results {
+          name
+          id
+          episode
+        }
+      } 
+    }
+  `,
   });   
   
   const episodes = data.episodes.results.map((i: object) => i) 
 
-  return {...episodes};
+  return episodes;
 }
+
+// export async function getAllEpisodesIds() {
+//   const { data } = await client.query({
+//     query: EPISODES_QUERY,
+//   });   
+//   //@ts-ignore
+//   const ids = data.episodes.results.map((i: object) => i.id) // jak nadefinovat ten tajp i.id tady?
+
+//   return ids;
+// }
 
 export async function getAllEpisodesIds() {
-  const { data } = await client.query({
-    query: EPISODES_QUERY,
-  });   
-  //@ts-ignore
-  const ids = data.episodes.results.map((i: object) => i.id) // jak nadefinovat ten tajp i.id tady?
-
-  return ids;
+  const count = await getEpisodesCount();
+  const arr = Array.from({ length: count }, (_, i) => i + 1);
+  
+  return arr.map((i) => i.toString())
 }
+
 
 export async function getSingleEpisode(id: string | string[] | undefined){
   const {data} = await client.query({
