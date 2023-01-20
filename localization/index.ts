@@ -1,4 +1,4 @@
-export const messages = {
+export const messagesInCzech = {
     hero_text: 'Vítejte v aplikaci Rick a Morty',
     episodes_headline: 'Epizody',
     air_date: 'Datum vysílání: {ts, date, ::ddMMyyyy}',
@@ -17,6 +17,7 @@ export const messages = {
     comments_error_consent_required: 'Pro přidání komentáře musíte souhlasit se zveřejněním zadaných dat.',
     comments_submit_button: 'Potvrdit',
     comments_success: 'Povedlo se',
+    comments_on_date: 'dne',
     comments_posted:'Váš komentář byl zveřejněn. Obnovte stránku, abyste ho viděli.',
     comments_button_add_more: 'Přidat další komentář'
 }

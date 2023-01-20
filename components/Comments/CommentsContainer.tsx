@@ -7,6 +7,9 @@ import Col from "react-bootstrap/Col";
 import SingleComment from "./SingleComment";
 import CommentsForm from "./CommentsForm";
 
+// other imports
+import { FormattedMessage } from "react-intl";
+
 interface CommentsProps {
   comments: {
     nickname?: string;
@@ -25,7 +28,13 @@ function CommentsContainer(comments: CommentsProps) {
         <Col md={{ span: 10, offset: 1 }} lg={{ span: 8, offset: 2 }}>
           <Row>
             <Col>
-              <h3>Comments:</h3>
+              <h3>
+                <FormattedMessage
+                  id="comments_headline"
+                  defaultMessage="Comments"
+                />
+                :
+              </h3>
             </Col>
           </Row>
           {commentsArray.length > 0 ? (
@@ -41,14 +50,23 @@ function CommentsContainer(comments: CommentsProps) {
           ) : (
             <Row className="my-4">
               <p className="text-center">
-                This episode does not have any comments. Be first to add one.
+                <FormattedMessage
+                  id="comments_no_comments"
+                  defaultMessage="This episode does not have any comments. Be first to add one."
+                />
               </p>
             </Row>
           )}
 
           <Row className="my-4">
             <Col>
-              <h4>Add comment:</h4>
+              <h4>
+                <FormattedMessage
+                  id="comments_add_comment_headline"
+                  defaultMessage="Add comment"
+                />
+                :
+              </h4>
             </Col>
           </Row>
           <CommentsForm />

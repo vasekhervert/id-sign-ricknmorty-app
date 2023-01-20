@@ -13,12 +13,16 @@ import Col from "react-bootstrap/Col";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { postComment } from "../../helpers";
+import { FormattedMessage } from "react-intl";
 
 interface FormValues {
   nickname: string;
   email: string;
   message: string;
   publicationConsent: boolean;
+}
+function returnKey(x: string) {
+  console.log(x);
 }
 
 const CommentSchema = Yup.object().shape({
@@ -70,7 +74,13 @@ export default function CommentsForm() {
               <Container className="mb-4">
                 <Row>
                   <Col>
-                    <label htmlFor="nickname">Nickname:</label>
+                    <label htmlFor="nickname">
+                      <FormattedMessage
+                        id="comments_nickname"
+                        defaultMessage="Nickname"
+                      />
+                      :
+                    </label>
                     <Field id="nickname" name="nickname" type="text" />
                   </Col>
                   <Col>
@@ -78,7 +88,7 @@ export default function CommentsForm() {
                     <Field
                       id="email"
                       name="email"
-                      placeholder="example@email.com"
+                      placeholder="abc@defgh.com"
                       type="email"
                     />
                     {errors.email && touched.email && (
@@ -88,7 +98,13 @@ export default function CommentsForm() {
                 </Row>
                 <Row>
                   <Col>
-                    <label>Comment:</label>
+                    <label>
+                      <FormattedMessage
+                        id="comments_comment"
+                        defaultMessage="Comment"
+                      />
+                      :
+                    </label>
                     <Field as="textarea" id="message" name="message" />
                     {errors.message && touched.message && (
                       <p className="text-danger">{errors.message}</p>
@@ -103,7 +119,10 @@ export default function CommentsForm() {
                         id="publicationConsent"
                         name="publicationConsent"
                       />
-                      I agree with the publication of the completed data
+                      <FormattedMessage
+                        id="comments_consent"
+                        defaultMessage="I agree with the publication of the completed data"
+                      />
                     </label>
                     {errors.publicationConsent &&
                       touched.publicationConsent && (
@@ -116,7 +135,10 @@ export default function CommentsForm() {
                 <Row>
                   <Col>
                     <button type="submit" className="btn btn-primary">
-                      Submit
+                      <FormattedMessage
+                        id="comments_submit_button"
+                        defaultMessage="Submit"
+                      />
                     </button>
                   </Col>
                 </Row>
@@ -156,13 +178,27 @@ export default function CommentsForm() {
       {commentPosted && (
         <div className="position-absolute top-0 left-0 bottom-0 right-0 bg-white">
           <div className="position-relative text-center">
-            <p className="text-success fw-bold fs-4">Success!</p>
-            <p>Your comment has been posted. Refresh the page to see it.</p>
+            <p className="text-success fw-bold fs-4">
+              <FormattedMessage
+                id="comments_success"
+                defaultMessage="Success"
+              />
+              !
+            </p>
+            <p>
+              <FormattedMessage
+                id="comments_posted"
+                defaultMessage="Your comment has been posted. Refresh the page to see it."
+              />
+            </p>
             <button
               className="btn btn-primary"
               onClick={() => setCommentPosted(false)}
             >
-              Add another comment
+              <FormattedMessage
+                id="comments_button_add_more"
+                defaultMessage="Add another comment"
+              />
             </button>
           </div>
         </div>

@@ -60,16 +60,6 @@ export async function getAllEpisodes(page: number) {
   return data;
 }
 
-// export async function getAllEpisodesIds() {
-//   const { data } = await client.query({
-//     query: EPISODES_QUERY,
-//   });   
-//   //@ts-ignore
-//   const ids = data.episodes.results.map((i: object) => i.id) // jak nadefinovat ten tajp i.id tady?
-
-//   return ids;
-// }
-
 export async function getAllEpisodesIds() {
   const count = await getEpisodesCount();
   return Array.from({ length: count }, (_, i) => (i + 1).toString()); 
@@ -89,6 +79,7 @@ export async function getSingleEpisode(id: string | string[] | undefined){
           name
           species
           image
+          gender
           origin {
             name
           }

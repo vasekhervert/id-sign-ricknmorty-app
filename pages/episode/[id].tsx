@@ -29,6 +29,7 @@ interface Props {
       name: string;
       species: string;
       image: string;
+      gender: string;
       origin: { name: string };
     }[];
     episode: string;

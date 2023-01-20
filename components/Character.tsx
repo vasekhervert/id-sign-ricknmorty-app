@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Card from "react-bootstrap/Card";
 import Image from "next/image";
+import { FormattedMessage } from "react-intl";
 
 interface Char {
   props: {
@@ -8,6 +9,7 @@ interface Char {
     name: string;
     species: string;
     image: string;
+    gender: string;
     origin: {
       name: string;
     };
@@ -16,7 +18,8 @@ interface Char {
 
 const Character = ({ props }: Char) => {
   const [shouldShowMoreInfo, setShouldShowMoreInfo] = useState<boolean>(false);
-  const { id, name, species, image, origin } = props;
+  const { id, name, species, image, origin, gender } = props;
+
   return (
     <Card
       className="mb-4"
@@ -37,9 +40,23 @@ const Character = ({ props }: Char) => {
         {shouldShowMoreInfo && (
           <Card.Text>
             <span>
-              Species: {species}
+              <FormattedMessage
+                id="characters_species"
+                defaultMessage="Species"
+              />
+              : {species}
               <br />
-              Origin: {origin.name}
+              <FormattedMessage
+                id="characters_origin"
+                defaultMessage="Origin"
+              />
+              : {origin.name}
+              <br />
+              <FormattedMessage
+                id="characters_gender"
+                defaultMessage="Gender"
+              />
+              : {gender}
             </span>
           </Card.Text>
         )}
