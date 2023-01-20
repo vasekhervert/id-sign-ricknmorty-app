@@ -6,19 +6,20 @@ import Header from "./Header";
 
 // other imports
 import { IntlProvider } from "react-intl";
-import { messagesInCzech } from "../../localization";
+import { messages } from "../../localization/messages";
+import { LOCALES } from "../../localization/locales";
 
 interface LayoutProps {
   children?: React.ReactElement<any> | React.ReactElement<any>[];
 }
 
-const lang = "en-US";
+const locale = LOCALES.ENGLISH;
 
 const Layout = ({ children }: LayoutProps) => {
   return (
     <IntlProvider
-      messages={messagesInCzech}
-      locale={lang}
+      messages={messages[locale]}
+      locale={locale}
       defaultLocale="en-US"
     >
       <Head>
