@@ -2,27 +2,27 @@ import { LOCALES } from "../locales"
 
 export const messagesInEnglish = {
     [LOCALES.ENGLISH]: {
-        hero_text: 'Vítejte v aplikaci Rick a Morty',
-        episodes_headline: 'Epizody',
-        air_date: 'Datum vysílání: {ts, date, dd.MM.yyyy}',
-        characters: 'Postavy v této epizodě',
-        characters_species: 'Rasa',
-        characters_origin: 'Původ',
-        characters_gender: 'Pohlaví',
-        comments_headline: 'Komentáře',
-        comments_add_comment_headline: 'Přidejte komentář',
+        hero_text: 'Welcome to Rick and Morty App!',
+        episodes_headline: 'Episodes',
+        air_date: 'Air date: {ts, date, dd.MM.yyyy}',
+        characters: 'Characters in this episode',
+        characters_species: 'Race',
+        characters_origin: 'Origin',
+        characters_gender: 'Gender',
+        comments_headline: 'Comments',
+        comments_add_comment_headline: 'Add comment',
         comments_no_comments: 'Tato epizoda zatím nemá žádné komentáře. Buď první, kdo přidá komentář.',
-        comments_nickname: 'Přezdívka',
-        comments_comment: 'Komentář',
-        comments_consent: 'Souhlasím se zveřejněním zadaných dat',
-        comments_error_required: 'Toto pole je povinné.',
-        comments_error_email_invalid: 'Neplatný email',
-        comments_error_consent_required: 'Pro přidání komentáře musíte souhlasit se zveřejněním zadaných dat.',
-        comments_submit_button: 'Potvrdit',
-        comments_success: 'Povedlo se',
-        comments_on_date: 'dne',
-        comments_posted:'Váš komentář byl zveřejněn. Obnovte stránku, abyste ho viděli.',
-        comments_button_add_more: 'Přidat další komentář'
+        comments_nickname: 'Nickname',
+        comments_comment: 'Comment',
+        comments_consent: 'I agree with the publication of the completed data',
+        comments_error_required: 'This field is required.',
+        comments_error_email_invalid: 'Invalid email',
+        comments_error_consent_required: 'You have to consent to publication of the completed data.',
+        comments_submit_button: 'Submit',
+        comments_success: 'Success',
+        comments_on_date: 'on',
+        comments_posted:'Your comment has been posted. Refresh the page to see it.',
+        comments_button_add_more: 'Add another comment'
     }
 }
 
