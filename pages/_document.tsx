@@ -1,8 +1,10 @@
 import { Html, Head, Main, NextScript } from "next/document";
 
+const lang = "cs";
+
 export default function Document() {
   return (
-    <Html lang="en">
+    <Html>
       <Head />
       <body>
         <Main />

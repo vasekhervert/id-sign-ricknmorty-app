@@ -18,7 +18,7 @@ function EpisodesList(episodes: EpisodesProps) {
           key={i.id}
           className="text-decoration-none text-black"
         >
-          <div className="border rounded p-4 my-2">
+          <div className="border-top rounded p-2">
             {i.episode} - <span className="">{i.name}</span>
           </div>
         </Link>

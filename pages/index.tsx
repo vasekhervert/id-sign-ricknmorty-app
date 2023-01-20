@@ -14,6 +14,7 @@ import CustomPagination from "../components/CustomPagination";
 
 // other imports
 import { getAllEpisodes } from "../helpers";
+import { FormattedMessage } from "react-intl";
 
 interface Props {
   episodes: {
@@ -39,13 +40,25 @@ const Home: NextPage<Props> = (props) => {
   return (
     <Layout>
       <Hero>
-        <h2 className="text-center">Welcome to Rick and Morty App!</h2>
+        <h2 className="text-center">
+          <FormattedMessage
+            id="hero_text"
+            defaultMessage="Welcome to Rick and Morty App!"
+          />
+        </h2>
       </Hero>
+
       <main>
         <Container>
           <Row>
             <Col md={{ span: 10, offset: 1 }} lg={{ span: 8, offset: 2 }}>
-              <h3 className="mt-4">Episodes: </h3>
+              <h3 className="mt-4">
+                <FormattedMessage
+                  id="episodes_headline"
+                  defaultMessage="Episodes"
+                />
+                :
+              </h3>
 
               <EpisodesList episodes={results} />
             </Col>
