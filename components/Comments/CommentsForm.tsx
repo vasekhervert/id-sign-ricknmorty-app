@@ -21,9 +21,6 @@ interface FormValues {
   message: string;
   publicationConsent: boolean;
 }
-function returnKey(x: string) {
-  console.log(x);
-}
 
 const CommentSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required."),
