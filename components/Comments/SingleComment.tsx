@@ -1,4 +1,4 @@
-import { makeDateAndTime } from "../../helpers";
+import { makeDate } from "../../helpers";
 import { FormattedMessage } from "react-intl";
 
 interface CommentProps {
@@ -15,7 +15,7 @@ const SingleComment = (props: CommentProps) => {
       <p className="p-2 border-bottom">
         <span className="fw-bold">{author}</span>{" "}
         <FormattedMessage id="comments_on_date" defaultMessage="on" />{" "}
-        {makeDateAndTime(timestamp)}:{" "}
+        {makeDate(timestamp, "cs-CZ")}:{" "}
       </p>
       <p className="p-2">{message}</p>
     </div>
