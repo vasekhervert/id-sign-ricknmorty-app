@@ -16,8 +16,6 @@ interface LayoutProps {
   children?: React.ReactElement<any> | React.ReactElement<any>[];
 }
 
-const locale = LOCALES.CZECH;
-
 const Layout = ({ children }: LayoutProps) => {
   const [locale, setLocale] = useState<string>(LOCALES.ENGLISH);
   return (
