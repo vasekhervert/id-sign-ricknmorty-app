@@ -11,7 +11,7 @@ export const messagesInEnglish = {
         characters_gender: 'Gender',
         comments_headline: 'Comments',
         comments_add_comment_headline: 'Add comment',
-        comments_no_comments: 'Tato epizoda zatím nemá žádné komentáře. Buď první, kdo přidá komentář.',
+        comments_no_comments: 'This episode does not have any comments. Be first to add one.',
         comments_nickname: 'Nickname',
         comments_comment: 'Comment',
         comments_consent: 'I agree with the publication of the completed data',
