@@ -5,8 +5,17 @@ import Link from "next/link";
 import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import LangSwitcher from "./LangSwitcher";
 
-export default function Header() {
+interface HeaderProps {
+  props: {
+    locale: string;
+    onLanguageChange(value: string): void;
+  };
+} // same as langswitch
+
+const Header = ({ props }: HeaderProps) => {
+  const { locale, onLanguageChange } = props;
   return (
     <header>
       <Container>
@@ -16,9 +25,12 @@ export default function Header() {
               <h1 className="fs-4">Rick and Morty Next.js App</h1>
             </Link>
           </Col>
-          <Col className="text-end">cz | en</Col>
+          <Col className="text-end">
+            <LangSwitcher locale={locale} onLanguageChange={onLanguageChange} />
+          </Col>
         </Row>
       </Container>
     </header>
   );
-}
+};
+export default Header;
