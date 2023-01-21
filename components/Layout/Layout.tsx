@@ -6,6 +6,7 @@ import { useState } from "react";
 
 // components imports
 import Header from "./Header";
+import LangSwitcher from "./LangSwitcher";
 
 // other imports
 import { IntlProvider } from "react-intl";
@@ -18,6 +19,11 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   const [locale, setLocale] = useState<string>(LOCALES.ENGLISH);
+
+  const onLanguageChange = (value: string) => {
+    setLocale(value);
+  };
+
   return (
     <IntlProvider
       messages={messages[locale]}
@@ -30,7 +36,7 @@ const Layout = ({ children }: LayoutProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header />
+      <Header props={{ locale, onLanguageChange }} />
       <main>{children}</main>
     </IntlProvider>
   );
