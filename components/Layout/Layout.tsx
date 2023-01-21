@@ -1,6 +1,9 @@
 // next imports
 import Head from "next/head";
 
+// react imports
+import { useState } from "react";
+
 // components imports
 import Header from "./Header";
 
@@ -13,14 +16,15 @@ interface LayoutProps {
   children?: React.ReactElement<any> | React.ReactElement<any>[];
 }
 
-const locale = LOCALES.ENGLISH;
+const locale = LOCALES.CZECH;
 
 const Layout = ({ children }: LayoutProps) => {
+  const [locale, setLocale] = useState<string>(LOCALES.ENGLISH);
   return (
     <IntlProvider
       messages={messages[locale]}
       locale={locale}
-      defaultLocale="en-US"
+      defaultLocale={LOCALES.ENGLISH}
     >
       <Head>
         <title>Rick And Morty Next.js App</title>
