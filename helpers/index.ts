@@ -96,12 +96,12 @@ export function makeSlug(string: string) {
   return string.replace('-', ' ').replace(/[^a-z\d\s]+/gi, "").split(' ').join('-').toLowerCase();
 }
 
-export function makeDateAndTime(timestamp: number) {
-  const date = new Date(timestamp);
-  const options: Intl.DateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-
-  
-  return date.toLocaleDateString('en-US', options) // 
+export function makeDate(input: number | string, locale: string) {
+  return new Date(input).toLocaleDateString(locale, {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
 }
 
