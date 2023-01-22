@@ -12,10 +12,10 @@ import Character from "../../components/Character";
 import CommentsContainer from "../../components/Comments/CommentsContainer";
 
 // other imports
-import { getAllEpisodesIds, getSingleEpisode, makeDate } from "../../helpers";
+import { getAllEpisodesIds, getSingleEpisode } from "../../helpers";
 import Hero from "../../components/Layout/Hero";
 import * as fs from "fs";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, FormattedDate } from "react-intl";
 
 interface Props {
   episode: {
@@ -50,7 +50,12 @@ const Episode: NextPage<Props> = (props) => {
         <p>
           <span className="fw-bold">{episode}</span> |{" "}
           <FormattedMessage id="air_date" defaultMessage="Air date" />:{" "}
-          {makeDate(air_date, "cs-CZ")}
+          <FormattedDate
+            value={new Date(air_date)}
+            day="numeric"
+            month="long"
+            year="numeric"
+          />
         </p>
       </Hero>
 
