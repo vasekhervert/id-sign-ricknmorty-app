@@ -61,8 +61,8 @@ const Episode: NextPage<Props> = (props) => {
 
       <Container className="mt-4">
         <Row>
-          <Col md={{ span: 10, offset: 1 }} lg={{ span: 8, offset: 2 }}>
-            <h3>
+          <Col>
+            <h3 className="mb-4">
               <FormattedMessage
                 id="characters"
                 defaultMessage="Characters in this episode"
@@ -73,15 +73,11 @@ const Episode: NextPage<Props> = (props) => {
         </Row>
 
         <Row>
-          <Col md={{ span: 10, offset: 1 }} lg={{ span: 8, offset: 2 }}>
-            <Row>
-              {characters.map((i) => (
-                <Col key={i.id} xs={6} md={2} lg={3}>
-                  <Character props={i} />
-                </Col>
-              ))}
-            </Row>
-          </Col>
+          {characters.map((i) => (
+            <Col key={i.id} xs={6} md={3} lg={4}>
+              <Character props={i} />
+            </Col>
+          ))}
         </Row>
       </Container>
 
