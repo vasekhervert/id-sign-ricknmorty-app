@@ -92,9 +92,9 @@ export async function getSingleEpisode(id: string | string[] | undefined){
   return data
 }
 
-export function makeSlug(string: string) {
-  return string.replace('-', ' ').replace(/[^a-z\d\s]+/gi, "").split(' ').join('-').toLowerCase();
-}
+// export function makeSlug(string: string) {
+//   return string.replace('-', ' ').replace(/[^a-z\d\s]+/gi, "").split(' ').join('-').toLowerCase();
+// }
 
 // export function makeDate(input: number | string, locale: string) {
 //   return new Date(input).toLocaleDateString(locale, {
