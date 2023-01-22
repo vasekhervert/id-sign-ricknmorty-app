@@ -4,7 +4,7 @@ export const messagesInCzech = {
     [LOCALES.CZECH]: {
         hero_text: 'Vítejte v aplikaci Rick a Morty',
         episodes_headline: 'Epizody',
-        air_date: 'Datum vysílání: {ts, date, dd.MM.yyyy}',
+        air_date: 'Datum vysílání',
         characters: 'Postavy v této epizodě',
         characters_species: 'Rasa',
         characters_origin: 'Původ',

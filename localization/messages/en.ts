@@ -4,7 +4,7 @@ export const messagesInEnglish = {
     [LOCALES.ENGLISH]: {
         hero_text: 'Welcome to Rick and Morty App!',
         episodes_headline: 'Episodes',
-        air_date: 'Air date: {ts, date, dd.MM.yyyy}',
+        air_date: 'Air date',
         characters: 'Characters in this episode',
         characters_species: 'Race',
         characters_origin: 'Origin',
