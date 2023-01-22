@@ -20,3 +20,11 @@ input[type=checkbox] {
     top: 50%;
     transform: translateY(-50%);    
 }
+
+.radius-top-left {
+    border-top-left-radius: 0.375rem;
+}
+
+.radius-bottom-left {
+    border-bottom-left-radius: 0.375rem;
+}
