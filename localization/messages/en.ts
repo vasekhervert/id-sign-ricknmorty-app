@@ -6,7 +6,7 @@ export const messagesInEnglish = {
         episodes_headline: 'Episodes',
         air_date: 'Air date',
         characters: 'Characters in this episode',
-        characters_species: 'Race',
+        characters_species: 'Species',
         characters_origin: 'Origin',
         characters_gender: 'Gender',
         comments_headline: 'Comments',
