@@ -13,7 +13,7 @@ import Col from "react-bootstrap/Col";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { postComment } from "../../helpers";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 
 interface FormValues {
   nickname: string;
@@ -22,21 +22,28 @@ interface FormValues {
   publicationConsent: boolean;
 }
 
-const CommentSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid email").required("Email is required."),
-  message: Yup.string()
-    .min(2, "Your message is too short.")
-    .required("This field is required."),
-  publicationConsent: Yup.bool()
-    .oneOf([true], "You have to consent to publication of the completed data.")
-    .required("You have to consent to publication of the completed data."),
-});
-
 export default function CommentsForm() {
   const [loading, setLoading] = useState<boolean>(false);
   const [commentPosted, setCommentPosted] = useState<boolean>(false);
   const router = useRouter();
+  const intl = useIntl();
   const { id } = router.query;
+
+  // the schema has to be inside the component to be able to use useIntl huk
+  const CommentSchema = Yup.object().shape({
+    email: Yup.string()
+      .email(intl.formatMessage({ id: "comments_error_email_invalid" }))
+      .required(intl.formatMessage({ id: "comments_error_required" })),
+    message: Yup.string()
+      .min(2, intl.formatMessage({ id: "comments_error_comment_too_short" }))
+      .required(intl.formatMessage({ id: "comments_error_required" })),
+    publicationConsent: Yup.bool()
+      .oneOf(
+        [true],
+        intl.formatMessage({ id: "comments_error_consent_required" })
+      )
+      .required(intl.formatMessage({ id: "comments_error_consent_required" })),
+  });
 
   return (
     <Row className="position-relative">
