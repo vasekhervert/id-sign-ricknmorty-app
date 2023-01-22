@@ -12,6 +12,7 @@ import LangSwitcher from "./LangSwitcher";
 import { IntlProvider } from "react-intl";
 import { messages } from "../../localization/messages";
 import { LOCALES } from "../../localization/locales";
+import Footer from "./Footer";
 
 interface LayoutProps {
   children?: React.ReactElement<any> | React.ReactElement<any>[];
@@ -38,6 +39,7 @@ const Layout = ({ children }: LayoutProps) => {
 
       <Header props={{ locale, onLanguageChange }} />
       <main>{children}</main>
+      <Footer />
     </IntlProvider>
   );
 };
