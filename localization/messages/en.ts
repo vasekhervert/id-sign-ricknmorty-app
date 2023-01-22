@@ -17,6 +17,7 @@ export const messagesInEnglish = {
         comments_consent: 'I agree with the publication of the completed data',
         comments_error_required: 'This field is required.',
         comments_error_email_invalid: 'Invalid email',
+        comments_error_comment_too_short: 'Your comment is too short',
         comments_error_consent_required: 'You have to consent to publication of the completed data.',
         comments_submit_button: 'Submit',
         comments_success: 'Success',

@@ -17,6 +17,7 @@ export const messagesInCzech = {
         comments_consent: 'Souhlasím se zveřejněním zadaných dat',
         comments_error_required: 'Toto pole je povinné.',
         comments_error_email_invalid: 'Neplatný email',
+        comments_error_comment_too_short: 'Váš komentář je příliš krátký',
         comments_error_consent_required: 'Pro přidání komentáře musíte souhlasit se zveřejněním zadaných dat.',
         comments_submit_button: 'Potvrdit',
         comments_success: 'Povedlo se',
