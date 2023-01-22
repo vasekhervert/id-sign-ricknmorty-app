@@ -96,14 +96,14 @@ export function makeSlug(string: string) {
   return string.replace('-', ' ').replace(/[^a-z\d\s]+/gi, "").split(' ').join('-').toLowerCase();
 }
 
-export function makeDate(input: number | string, locale: string) {
-  return new Date(input).toLocaleDateString(locale, {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+// export function makeDate(input: number | string, locale: string) {
+//   return new Date(input).toLocaleDateString(locale, {
+//     year: "numeric",
+//     month: "long",
+//     day: "numeric",
+//   });
 
-}
+// }
 
 export async function postComment (
   id: string | string[] | undefined,
