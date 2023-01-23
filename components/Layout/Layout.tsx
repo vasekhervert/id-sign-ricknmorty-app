@@ -9,9 +9,7 @@ import Header from "./Header";
 import LangSwitcher from "./LangSwitcher";
 
 // other imports
-import { IntlProvider } from "react-intl";
-import { messages } from "../../localization/messages";
-import { LOCALES } from "../../localization/locales";
+
 import Footer from "./Footer";
 
 interface LayoutProps {
@@ -19,28 +17,22 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  const [locale, setLocale] = useState<string>(LOCALES.ENGLISH);
-
-  const onLanguageChange = (value: string) => {
-    setLocale(value);
-  };
+  // const onLanguageChange = (value: string) => {
+  //   setLocale(value);
+  // };
 
   return (
-    <IntlProvider
-      messages={messages[locale]}
-      locale={locale}
-      defaultLocale={LOCALES.ENGLISH}
-    >
+    <>
       <Head>
         <title>Rick And Morty Next.js App</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header props={{ locale, onLanguageChange }} />
+      <Header />
       <main>{children}</main>
       <Footer />
-    </IntlProvider>
+    </>
   );
 };
 
