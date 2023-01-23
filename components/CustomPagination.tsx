@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Pagination from "react-bootstrap/Pagination";
 
 export default function CustomPagination(props: {
@@ -8,13 +9,14 @@ export default function CustomPagination(props: {
     let items = [];
     for (let number = 1; number <= props.pages; number++) {
       items.push(
-        <Pagination.Item
-          active={number === props.currentPage}
-          href={number === 1 ? "/" : `/episodes/${number}`}
-          key={number}
-        >
-          {number}
-        </Pagination.Item>
+        <li className="page-item">
+          <Link
+            href={number === 1 ? "/" : `/episodes/${number}`}
+            className={`page-link ${number === props.currentPage && "active"}`}
+          >
+            {number}
+          </Link>
+        </li>
       );
     }
 
@@ -22,8 +24,8 @@ export default function CustomPagination(props: {
   };
 
   return (
-    <Pagination className="justify-content-center">
+    <ul className="pagination justify-content-center my-4">
       {renderPaginationItems()}
-    </Pagination>
+    </ul>
   );
 }
