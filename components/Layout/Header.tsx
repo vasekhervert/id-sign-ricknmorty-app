@@ -7,15 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import LangSwitcher from "./LangSwitcher";
 
-interface HeaderProps {
-  props: {
-    locale: string;
-    onLanguageChange(value: string): void;
-  };
-} // same as langswitch
-
-const Header = ({ props }: HeaderProps) => {
-  const { locale, onLanguageChange } = props;
+const Header = () => {
   return (
     <header>
       <Container>
@@ -26,7 +18,7 @@ const Header = ({ props }: HeaderProps) => {
             </Link>
           </Col>
           <Col className="text-end">
-            <LangSwitcher locale={locale} onLanguageChange={onLanguageChange} />
+            <LangSwitcher />
           </Col>
         </Row>
       </Container>
