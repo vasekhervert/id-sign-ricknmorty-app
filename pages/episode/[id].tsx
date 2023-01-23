@@ -89,9 +89,16 @@ const Episode: NextPage<Props> = (props) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const ids = await getAllEpisodesIds();
 
-  const paths = ids.map((i: string) => ({
-    params: { id: i },
-  }));
+  let paths = [];
+
+  for (let i = 0; i < ids.length; i++) {
+    const currentItem = [
+      { params: { id: ids[i] }, locale: "en-US" },
+      { params: { id: ids[i] }, locale: "cs-CZ" },
+    ];
+
+    paths.push(...currentItem);
+  }
 
   return {
     paths,
