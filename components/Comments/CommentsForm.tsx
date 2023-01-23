@@ -28,6 +28,7 @@ export default function CommentsForm() {
   const router = useRouter();
   const intl = useIntl();
   const { id } = router.query;
+  const { asPath, locales, defaultLocale } = router;
 
   // the schema has to be inside the component to be able to use useIntl huk
   const CommentSchema = Yup.object().shape({
@@ -58,7 +59,7 @@ export default function CommentsForm() {
           validationSchema={CommentSchema}
           onSubmit={(values: FormValues, actions) => {
             setLoading(true);
-            postComment(id, router.asPath, values);
+            postComment(id, asPath, locales, defaultLocale, values);
             setTimeout(() => {
               setLoading(false);
               setCommentPosted(true);
