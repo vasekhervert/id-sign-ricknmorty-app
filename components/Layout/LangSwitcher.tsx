@@ -1,18 +1,15 @@
-import { LOCALES } from "../../localization/locales";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
-interface LangProps {
-  locale: string;
-  onLanguageChange(value: string): void;
-}
-
-const LangSwitcher = ({ locale, onLanguageChange }: LangProps) => {
+const LangSwitcher = () => {
+  const { asPath, locale } = useRouter();
   const label = locale === "cs-CZ" ? "English" : "Česky";
-  const languageToSet = locale === "cs-CZ" ? LOCALES.ENGLISH : LOCALES.CZECH;
+  const localeToSet = locale === "cs-CZ" ? "en-US" : "cs-CZ";
 
   return (
-    <button className="btn" onClick={() => onLanguageChange(languageToSet)}>
+    <Link className="btn" href={asPath} locale={localeToSet}>
       {label}
-    </button>
+    </Link>
   );
 };
 
