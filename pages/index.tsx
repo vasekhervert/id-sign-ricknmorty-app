@@ -1,5 +1,5 @@
 // next imports
-import { NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 
 // bootstrap imports
 import { Container } from "react-bootstrap";
@@ -30,10 +30,12 @@ interface Props {
       episode: string;
     }[];
   };
+  ctx: any;
 }
 
 const Home: NextPage<Props> = (props) => {
   const { episodes } = props;
+
   const { info, results } = episodes;
   const currentPage = info.next != null ? info.next - 1 : info.prev! + 1;
 
@@ -74,12 +76,12 @@ const Home: NextPage<Props> = (props) => {
   );
 };
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const episodes = await getAllEpisodes(1);
 
   return {
     props: { ...episodes },
   };
-}
+};
 
 export default Home;
