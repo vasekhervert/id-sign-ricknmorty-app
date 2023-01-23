@@ -2,6 +2,10 @@
 
 Made for [ID-SIGN](https://www.id-sign.com/)
 
+## .env info
+
+An enviroment variable REVALIDATION_SECRET is needed for on-demand revalidation to work.
+
 ## Techs used
 
 - [Next.js](https://nextjs.org/docs)
