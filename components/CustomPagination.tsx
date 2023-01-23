@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Pagination from "react-bootstrap/Pagination";
 
 export default function CustomPagination(props: {
   currentPage: number;
@@ -9,7 +8,7 @@ export default function CustomPagination(props: {
     let items = [];
     for (let number = 1; number <= props.pages; number++) {
       items.push(
-        <li className="page-item">
+        <li className="page-item" key={number}>
           <Link
             href={number === 1 ? "/" : `/episodes/${number}`}
             className={`page-link ${number === props.currentPage && "active"}`}
