@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Card from "react-bootstrap/Card";
+
 import Image from "next/image";
 import { FormattedMessage } from "react-intl";
 
