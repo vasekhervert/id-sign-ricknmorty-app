@@ -108,6 +108,8 @@ export async function getSingleEpisode(id: string | string[] | undefined){
 export async function postComment (
   id: string | string[] | undefined,
   revalPath: string,
+  locales: string[] | undefined,
+  defaultLocale: string | undefined,
   formData: {
     name?: string;
     email: string;
@@ -117,7 +119,7 @@ export async function postComment (
 )  {
   const timestamp = Date.now();
   const { publicationConsent, ...restOfForm } = formData; // get rid of consent proprty, dont need it
-  const requestBody = {...restOfForm, timestamp, revalPath};
+  const requestBody = {...restOfForm, timestamp, revalPath, locales, defaultLocale};
   
   const response = await fetch(`/api/comments?id=${id}`, {
     method: 'POST',
