@@ -7,36 +7,38 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 // components imports
-import Layout from "../components/Layout/Layout";
-import Hero from "../components/Layout/Hero";
-import EpisodesList from "../components/EpisodesList";
-import CustomPagination from "../components/CustomPagination";
+import { Layout } from "../components/Layout/Layout";
+import { Hero } from "../components/Layout/Hero";
+import { EpisodesList } from "../components/EpisodesList";
+import { CustomPagination } from "../components/CustomPagination";
 
 // other imports
 import { getAllEpisodes } from "../helpers";
 import { FormattedMessage } from "react-intl";
 
-interface Props {
+type HomeProps = {
   episodes: {
-    info: {
-      count: number;
-      pages: number;
-      prev: number | null;
-      next: number | null;
-    };
-    results: {
-      name: string;
-      id: string;
-      episode: string;
-    }[];
+    info: Info;
+    results: Results[];
   };
-  ctx: any;
-}
+};
 
-const Home: NextPage<Props> = (props) => {
-  const { episodes } = props;
+type Info = {
+  count: number;
+  pages: number;
+  prev: number | null;
+  next: number | null;
+};
 
+type Results = {
+  name: string;
+  id: string;
+  episode: string;
+};
+
+const Home: NextPage<HomeProps> = ({ episodes }) => {
   const { info, results } = episodes;
+
   const currentPage = info.next != null ? info.next - 1 : info.prev! + 1;
 
   return (
