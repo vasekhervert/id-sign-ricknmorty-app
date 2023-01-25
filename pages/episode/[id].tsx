@@ -7,13 +7,13 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 // components imports
-import Layout from "../../components/Layout/Layout";
-import Character from "../../components/Character";
-import CommentsContainer from "../../components/Comments/CommentsContainer";
+import { Layout } from "../../components/Layout/Layout";
+import { Character } from "../../components/Character";
+import { CommentsContainer } from "../../components/Comments/CommentsContainer";
 
 // other imports
 import { getAllEpisodesIds, getSingleEpisode } from "../../helpers";
-import Hero from "../../components/Layout/Hero";
+import { Hero } from "../../components/Layout/Hero";
 import * as fs from "fs";
 import { FormattedMessage, FormattedDate } from "react-intl";
 
@@ -40,7 +40,7 @@ interface Props {
   epis: {};
 }
 
-const Episode: NextPage<Props> = (props) => {
+export const Episode: NextPage<Props> = (props) => {
   const { name, episode, characters, air_date } = props.episode;
 
   return (

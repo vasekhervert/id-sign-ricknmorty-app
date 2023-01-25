@@ -7,10 +7,10 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 // components imports
-import Layout from "../../components/Layout/Layout";
-import Hero from "../../components/Layout/Hero";
-import EpisodesList from "../../components/EpisodesList";
-import CustomPagination from "../../components/CustomPagination";
+import { Layout } from "../../components/Layout/Layout";
+import { Hero } from "../../components/Layout/Hero";
+import { EpisodesList } from "../../components/EpisodesList";
+import { CustomPagination } from "../../components/CustomPagination";
 
 // other imports
 import { getAllEpisodes, getEpisodesInfo } from "../../helpers";
