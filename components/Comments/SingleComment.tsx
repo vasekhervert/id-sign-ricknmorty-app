@@ -1,14 +1,16 @@
 import { FormattedMessage, FormattedDate } from "react-intl";
 
-interface CommentProps {
+interface SingleCommentProps {
   author: string;
   message: string;
   timestamp: number;
 }
 
-export const SingleComment = (props: CommentProps) => {
-  const { author, message, timestamp } = props;
-
+export const SingleComment = ({
+  author,
+  message,
+  timestamp,
+}: SingleCommentProps) => {
   return (
     <div className="border rounded">
       <p className="p-2 border-bottom">
