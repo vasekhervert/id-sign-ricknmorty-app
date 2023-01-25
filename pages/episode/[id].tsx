@@ -110,7 +110,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const params = context.params!;
   const data = await getSingleEpisode(params.id);
 
+  // check if comments folder exists
   if (!fs.existsSync("comments")) {
+    // if not, create it
     fs.mkdirSync("comments");
   }
 
