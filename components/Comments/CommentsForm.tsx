@@ -14,6 +14,7 @@ import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { postComment } from "../../helpers";
 import { FormattedMessage, useIntl } from "react-intl";
+import { setDefaultResultOrder } from "dns/promises";
 
 interface FormValues {
   nickname: string;
@@ -24,6 +25,7 @@ interface FormValues {
 
 const CommentsForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
   const [commentPosted, setCommentPosted] = useState<boolean>(false);
   const router = useRouter();
   const intl = useIntl();
@@ -59,19 +61,29 @@ const CommentsForm = () => {
           validationSchema={CommentSchema}
           onSubmit={(values: FormValues, actions) => {
             setLoading(true);
-            postComment(id, asPath, locales, defaultLocale, values);
-            setTimeout(() => {
-              setLoading(false);
-              setCommentPosted(true);
-              actions.resetForm({
-                values: {
-                  nickname: "",
-                  email: "",
-                  message: "",
-                  publicationConsent: false,
-                },
-              });
-            }, 1500);
+            postComment(id, asPath, locales, defaultLocale, values).then(
+              () => {
+                setTimeout(() => {
+                  setLoading(false);
+                  setCommentPosted(true);
+                  actions.resetForm({
+                    values: {
+                      nickname: "",
+                      email: "",
+                      message: "",
+                      publicationConsent: false,
+                    },
+                  });
+                }, 1500);
+              },
+              (error) => {
+                console.log(error);
+                setTimeout(() => {
+                  setLoading(false);
+                  setError(true);
+                }, 1500);
+              }
+            );
           }}
         >
           {({ errors, touched }) => (
@@ -188,7 +200,6 @@ const CommentsForm = () => {
                 id="comments_success"
                 defaultMessage="Success"
               />
-              !
             </p>
             <p>
               <FormattedMessage
@@ -203,6 +214,30 @@ const CommentsForm = () => {
               <FormattedMessage
                 id="comments_button_add_more"
                 defaultMessage="Add another comment"
+              />
+            </button>
+          </div>
+        </div>
+      )}
+      {error && (
+        <div className="position-absolute top-0 left-0 bottom-0 right-0 bg-white">
+          <div className="position-relative text-center">
+            <p className="text-danger fw-bold fs-4">
+              <FormattedMessage
+                id="comments_error_sending_failed_headline"
+                defaultMessage="Error"
+              />
+            </p>
+            <p>
+              <FormattedMessage
+                id="comments_error_sending_failed"
+                defaultMessage="Adding comment failed. Please try again later."
+              />
+            </p>
+            <button className="btn btn-primary" onClick={() => setError(false)}>
+              <FormattedMessage
+                id="comments_button_try_again"
+                defaultMessage="Try again"
               />
             </button>
           </div>
