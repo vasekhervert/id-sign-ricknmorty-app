@@ -1,6 +1,5 @@
 import { useMemo } from "react";
 import { useRouter } from "next/router";
-import { useState } from "react";
 
 import type { AppProps } from "next/app";
 import "bootstrap/dist/css/bootstrap.min.css";
