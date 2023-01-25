@@ -38,7 +38,6 @@ type Results = {
 
 const Home: NextPage<HomeProps> = ({ episodes }) => {
   const { info, results } = episodes;
-
   const currentPage = info.next != null ? info.next - 1 : info.prev! + 1;
 
   return (
