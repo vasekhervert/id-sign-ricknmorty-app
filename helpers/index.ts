@@ -116,11 +116,12 @@ export async function postComment (
     email: string;
     message: string;
     publicationConsent: boolean;
+    timestamp: number;
   }
 )  {
-  const timestamp = Date.now();
+  
   const { publicationConsent, ...restOfForm } = formData; // get rid of consent proprty, dont need it
-  const requestBody = {...restOfForm, timestamp, revalPath, locales, defaultLocale};
+  const requestBody = {...restOfForm, revalPath, locales, defaultLocale};
   
   const response = await fetch(`/api/comments?id=${id}`, {
     method: 'POST',
