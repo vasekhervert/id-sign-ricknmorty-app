@@ -16,8 +16,11 @@
   "comments_error_email_invalid": "Invalid email",
   "comments_error_comment_too_short": "Your comment is too short",
   "comments_error_consent_required": "You have to consent to publication of the completed data.",
+  "comments_error_sending_failed_headline": "Error...",
+  "comments_error_sending_failed": "Adding comment failed. Please try again later.",
+  "comments_button_try_again": "Try again",
   "comments_submit_button": "Submit",
-  "comments_success": "Success",
+  "comments_success": "Success!",
   "comments_on_date": "on",
   "comments_posted": "Your comment has been posted. Refresh the page to see it.",
   "comments_button_add_more": "Add another comment"
