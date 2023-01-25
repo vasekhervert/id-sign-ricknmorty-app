@@ -1,4 +1,5 @@
 import { gql } from "@apollo/client";
+import { rejects } from "assert";
 import client from "../lib/apollo-client";
 
 export async function getEpisodesInfo() {
@@ -129,6 +130,13 @@ export async function postComment (
     },
     body: JSON.stringify(requestBody)
   })
+
+  if(!response.ok) {
+    throw new Error('Error ocurred while adding comment.')
+  } else {
+    return response.json();
+  }
   
-  return response.json();
+  
+  
 };
