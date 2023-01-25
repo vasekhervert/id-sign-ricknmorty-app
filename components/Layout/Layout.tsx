@@ -1,12 +1,8 @@
 // next imports
 import Head from "next/head";
 
-// react imports
-import { useState } from "react";
-
 // components imports
 import Header from "./Header";
-import LangSwitcher from "./LangSwitcher";
 
 // other imports
 
@@ -17,10 +13,6 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  // const onLanguageChange = (value: string) => {
-  //   setLocale(value);
-  // };
-
   return (
     <>
       <Head>

@@ -9,7 +9,7 @@ interface EpisodesProps {
   }[];
 }
 
-function EpisodesList(episodes: EpisodesProps) {
+const EpisodesList = (episodes: EpisodesProps) => {
   return (
     <>
       {episodes.episodes.map((i) => (
@@ -25,6 +25,6 @@ function EpisodesList(episodes: EpisodesProps) {
       ))}
     </>
   );
-}
+};
 
 export default EpisodesList;

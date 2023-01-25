@@ -19,7 +19,7 @@ interface CommentsProps {
   }[];
 }
 
-function CommentsContainer(comments: CommentsProps) {
+const CommentsContainer = (comments: CommentsProps) => {
   const commentsArray = comments.comments;
 
   return (
@@ -74,6 +74,6 @@ function CommentsContainer(comments: CommentsProps) {
       </Row>
     </Container>
   );
-}
+};
 
 export default CommentsContainer;

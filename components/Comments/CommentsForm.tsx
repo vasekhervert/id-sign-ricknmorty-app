@@ -22,7 +22,7 @@ interface FormValues {
   publicationConsent: boolean;
 }
 
-export default function CommentsForm() {
+const CommentsForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [commentPosted, setCommentPosted] = useState<boolean>(false);
   const router = useRouter();
@@ -210,4 +210,6 @@ export default function CommentsForm() {
       )}
     </Row>
   );
-}
+};
+
+export default CommentsForm;

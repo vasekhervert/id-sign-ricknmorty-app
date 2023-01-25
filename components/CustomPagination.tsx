@@ -1,9 +1,6 @@
 import Link from "next/link";
 
-export default function CustomPagination(props: {
-  currentPage: number;
-  pages: number;
-}) {
+const CustomPagination = (props: { currentPage: number; pages: number }) => {
   const renderPaginationItems = () => {
     let items = [];
     for (let number = 1; number <= props.pages; number++) {
@@ -27,4 +24,6 @@ export default function CustomPagination(props: {
       {renderPaginationItems()}
     </ul>
   );
-}
+};
+
+export default CustomPagination;

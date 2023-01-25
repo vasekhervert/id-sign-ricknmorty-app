@@ -11,7 +11,7 @@ import { IntlProvider } from "react-intl";
 import English from "./../localization/en.json";
 import Czech from "./../localization/cz.json";
 
-export default function App({ Component, pageProps }: AppProps) {
+const App = ({ Component, pageProps }: AppProps) => {
   const { locale } = useRouter();
 
   const messages = useMemo(() => {
@@ -30,4 +30,6 @@ export default function App({ Component, pageProps }: AppProps) {
       <Component {...pageProps} />
     </IntlProvider>
   );
-}
+};
+
+export default App;
