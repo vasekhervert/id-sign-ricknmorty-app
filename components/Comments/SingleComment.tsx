@@ -6,7 +6,7 @@ interface CommentProps {
   timestamp: number;
 }
 
-const SingleComment = (props: CommentProps) => {
+export const SingleComment = (props: CommentProps) => {
   const { author, message, timestamp } = props;
 
   return (
@@ -25,5 +25,3 @@ const SingleComment = (props: CommentProps) => {
     </div>
   );
 };
-
-export default SingleComment;
