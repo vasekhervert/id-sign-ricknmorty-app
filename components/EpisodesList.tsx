@@ -1,18 +1,20 @@
 // next imports
 import Link from "next/link";
 
-interface EpisodesProps {
-  episodes: {
-    name?: string;
-    id: string;
-    episode: string;
-  }[];
-}
+type EpisodesProps = {
+  episodes: Episode[];
+};
 
-const EpisodesList = (episodes: EpisodesProps) => {
+type Episode = {
+  name?: string;
+  id: string;
+  episode: string;
+};
+
+export const EpisodesList = ({ episodes }: EpisodesProps) => {
   return (
     <>
-      {episodes.episodes.map((i) => (
+      {episodes.map((i) => (
         <Link
           href={`/episode/${i.id}`}
           key={i.id}
@@ -26,5 +28,3 @@ const EpisodesList = (episodes: EpisodesProps) => {
     </>
   );
 };
-
-export default EpisodesList;
