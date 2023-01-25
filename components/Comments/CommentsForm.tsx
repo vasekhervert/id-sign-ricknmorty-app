@@ -76,8 +76,7 @@ const CommentsForm = () => {
                   });
                 }, 1500);
               },
-              (error) => {
-                console.log(error);
+              () => {
                 setTimeout(() => {
                   setLoading(false);
                   setError(true);
