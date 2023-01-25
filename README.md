@@ -4,7 +4,7 @@ Made for [ID-SIGN](https://www.id-sign.com/)
 
 ## .env info
 
-An enviroment variable REVALIDATION_SECRET is needed for on-demand revalidation to work.
+This app uses enviroment variables REVALIDATION_SECRET and BASE_URL. Example env file provided in the repo, changing the values is recommended.
 
 ## Techs used
 
