@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const LangSwitcher = () => {
+export const LangSwitcher = () => {
   const { asPath, locale } = useRouter();
   const label = locale === "cs-CZ" ? "English, please" : "Česky, prosím";
   const localeToSet = locale === "cs-CZ" ? "en-US" : "cs-CZ";
@@ -12,5 +12,3 @@ const LangSwitcher = () => {
     </Link>
   );
 };
-
-export default LangSwitcher;

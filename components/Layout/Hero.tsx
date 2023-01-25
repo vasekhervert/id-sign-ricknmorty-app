@@ -7,7 +7,7 @@ interface HeroProps {
   children?: React.ReactElement<any> | React.ReactElement<any>[];
 }
 
-const Hero = ({ children }: HeroProps) => {
+export const Hero = ({ children }: HeroProps) => {
   return (
     <Container fluid className="bg-dark text-light">
       <Container
@@ -24,5 +24,3 @@ const Hero = ({ children }: HeroProps) => {
     </Container>
   );
 };
-
-export default Hero;

@@ -5,9 +5,11 @@ import Link from "next/link";
 import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import LangSwitcher from "./LangSwitcher";
 
-const Header = () => {
+// components imports
+import { LangSwitcher } from "./LangSwitcher";
+
+export const Header = () => {
   return (
     <header>
       <Container>
@@ -25,4 +27,3 @@ const Header = () => {
     </header>
   );
 };
-export default Header;
