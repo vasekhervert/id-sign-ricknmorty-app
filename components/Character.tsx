@@ -16,7 +16,7 @@ interface Char {
   };
 }
 
-const Character = ({ props }: Char) => {
+export const Character = ({ props }: Char) => {
   const [shouldShowMoreInfo, setShouldShowMoreInfo] = useState<boolean>(false);
   const { name, species, image, origin, gender } = props;
 
@@ -66,5 +66,3 @@ const Character = ({ props }: Char) => {
     </div>
   );
 };
-
-export default Character;
