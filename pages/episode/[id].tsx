@@ -110,7 +110,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const params = context.params!;
   const data = await getSingleEpisode(params.id);
 
-  const filePath = `json/episode-${params.id}.json`;
+  if (!fs.existsSync("comments")) {
+    fs.mkdirSync("comments");
+  }
+
+  const filePath = `comments/episode-${params.id}.json`;
   let fileContents: string;
 
   if (fs.existsSync(filePath)) {
