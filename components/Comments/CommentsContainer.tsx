@@ -1,3 +1,6 @@
+// react imports
+import { useState, useEffect } from "react";
+
 // bootstrap imports
 import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
@@ -11,16 +14,24 @@ import CommentsForm from "./CommentsForm";
 import { FormattedMessage } from "react-intl";
 
 interface CommentsProps {
-  comments: {
-    nickname?: string;
-    email: string;
-    timestamp: number;
-    message: string;
-  }[];
+  comments: Comment[];
 }
 
-const CommentsContainer = (comments: CommentsProps) => {
-  const commentsArray = comments.comments;
+interface Comment {
+  nickname?: string;
+  email: string;
+  timestamp: number;
+  message: string;
+}
+
+const CommentsContainer = (props: CommentsProps) => {
+  const [comments, setComments] = useState<Comment[]>(props.comments);
+
+  const handleNewComment = (newComment: Comment) => {
+    const newCommentsArray: Comment[] = [newComment, ...comments];
+    setComments(newCommentsArray);
+    console.log(comments);
+  };
 
   return (
     <Container className="mt-4">
@@ -37,8 +48,8 @@ const CommentsContainer = (comments: CommentsProps) => {
               </h3>
             </Col>
           </Row>
-          {commentsArray.length > 0 ? (
-            commentsArray.map((i) => (
+          {comments.length > 0 ? (
+            comments.map((i) => (
               <Row key={i.timestamp} className="mb-2">
                 <SingleComment
                   author={i.nickname || i.email}
@@ -69,7 +80,7 @@ const CommentsContainer = (comments: CommentsProps) => {
               </h4>
             </Col>
           </Row>
-          <CommentsForm />
+          <CommentsForm handleNewComment={handleNewComment} />
         </Col>
       </Row>
     </Container>

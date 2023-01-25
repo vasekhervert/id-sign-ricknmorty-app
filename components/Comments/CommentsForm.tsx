@@ -21,9 +21,21 @@ interface FormValues {
   email: string;
   message: string;
   publicationConsent: boolean;
+  timestamp: number;
 }
 
-const CommentsForm = () => {
+type CommentsFormProps = {
+  handleNewComment: (newComment: Comment) => void;
+};
+
+interface Comment {
+  nickname?: string;
+  email: string;
+  timestamp: number;
+  message: string;
+}
+
+const CommentsForm = ({ handleNewComment }: CommentsFormProps) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const [commentPosted, setCommentPosted] = useState<boolean>(false);
@@ -57,13 +69,18 @@ const CommentsForm = () => {
             email: "",
             message: "",
             publicationConsent: false,
+            timestamp: 0,
           }}
           validationSchema={CommentSchema}
           onSubmit={(values: FormValues, actions) => {
             setLoading(true);
-            postComment(id, asPath, locales, defaultLocale, values).then(
+            postComment(id, asPath, locales, defaultLocale, {
+              ...values,
+              timestamp: Date.now(),
+            }).then(
               () => {
                 setTimeout(() => {
+                  handleNewComment({ ...values, timestamp: Date.now() });
                   setLoading(false);
                   setCommentPosted(true);
                   actions.resetForm({
@@ -72,6 +89,7 @@ const CommentsForm = () => {
                       email: "",
                       message: "",
                       publicationConsent: false,
+                      timestamp: 0,
                     },
                   });
                 }, 1500);
