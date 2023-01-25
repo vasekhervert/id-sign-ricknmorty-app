@@ -15,24 +15,24 @@ import * as Yup from "yup";
 import { postComment } from "../../helpers";
 import { FormattedMessage, useIntl } from "react-intl";
 
-interface FormValues {
+type FormValues = {
   nickname: string;
   email: string;
   message: string;
   publicationConsent: boolean;
   timestamp: number;
-}
+};
 
 type CommentsFormProps = {
   handleNewComment: (newComment: Comment) => void;
 };
 
-interface Comment {
+type Comment = {
   nickname?: string;
   email: string;
   timestamp: number;
   message: string;
-}
+};
 
 export const CommentsForm = ({ handleNewComment }: CommentsFormProps) => {
   const [loading, setLoading] = useState<boolean>(false);
