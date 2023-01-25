@@ -35,7 +35,7 @@ interface Comment {
   message: string;
 }
 
-const CommentsForm = ({ handleNewComment }: CommentsFormProps) => {
+export const CommentsForm = ({ handleNewComment }: CommentsFormProps) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const [commentPosted, setCommentPosted] = useState<boolean>(false);
@@ -263,5 +263,3 @@ const CommentsForm = ({ handleNewComment }: CommentsFormProps) => {
     </Row>
   );
 };
-
-export default CommentsForm;
