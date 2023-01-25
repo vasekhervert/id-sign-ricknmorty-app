@@ -1,13 +1,21 @@
 import Link from "next/link";
 
-const CustomPagination = (props: { currentPage: number; pages: number }) => {
+type CustomPaginationProps = {
+  currentPage: number;
+  pages: number;
+};
+
+export const CustomPagination = ({
+  currentPage,
+  pages,
+}: CustomPaginationProps) => {
   const renderPaginationItems = () => {
-    const pagesArray = Array.from({ length: props.pages }, (_, i) => i + 1); // make an array of props.pages length
+    const pagesArray = Array.from({ length: pages }, (_, i) => i + 1); // make an array of props.pages length
     const items = pagesArray.map((i: number) => (
       <li className="page-item" key={i}>
         <Link
           href={i === 1 ? "/" : `/episodes/${i}`}
-          className={`page-link ${i === props.currentPage && "active"}`}
+          className={`page-link ${i === currentPage && "active"}`}
         >
           {i}
         </Link>
@@ -23,5 +31,3 @@ const CustomPagination = (props: { currentPage: number; pages: number }) => {
     </ul>
   );
 };
-
-export default CustomPagination;
