@@ -16,24 +16,27 @@ import { CustomPagination } from "../../components/CustomPagination";
 import { getAllEpisodes, getEpisodesInfo } from "../../helpers";
 import { FormattedMessage } from "react-intl";
 
-interface Props {
+type PageProps = {
   episodes: {
-    info: {
-      count: number;
-      pages: number;
-      prev: number | null;
-      next: number | null;
-    };
-    results: {
-      name: string;
-      id: string;
-      episode: string;
-    }[];
+    info: Info;
+    results: Results[];
   };
-}
+};
 
-const Page: NextPage<Props> = (props) => {
-  const { episodes } = props;
+type Info = {
+  count: number;
+  pages: number;
+  prev: number | null;
+  next: number | null;
+};
+
+type Results = {
+  name: string;
+  id: string;
+  episode: string;
+};
+
+const Page: NextPage<PageProps> = ({ episodes }) => {
   const { info, results } = episodes;
   const currentPage = info.next != null ? info.next - 1 : info.prev! + 1;
 

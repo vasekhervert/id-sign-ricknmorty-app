@@ -24,13 +24,12 @@ interface Comment {
   message: string;
 }
 
-export const CommentsContainer = (props: CommentsProps) => {
-  const [comments, setComments] = useState<Comment[]>(props.comments);
+export const CommentsContainer = ({ comments }: CommentsProps) => {
+  const [commentsArray, setCommentsArray] = useState<Comment[]>(comments);
 
   const handleNewComment = (newComment: Comment) => {
-    const newCommentsArray: Comment[] = [newComment, ...comments];
-    setComments(newCommentsArray);
-    console.log(comments);
+    const newCommentsArray: Comment[] = [newComment, ...commentsArray];
+    setCommentsArray(newCommentsArray);
   };
 
   return (
@@ -48,8 +47,8 @@ export const CommentsContainer = (props: CommentsProps) => {
               </h3>
             </Col>
           </Row>
-          {comments.length > 0 ? (
-            comments.map((i) => (
+          {commentsArray.length > 0 ? (
+            commentsArray.map((i) => (
               <Row key={i.timestamp} className="mb-2">
                 <SingleComment
                   author={i.nickname || i.email}

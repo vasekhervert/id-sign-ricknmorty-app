@@ -3,22 +3,25 @@ import { useState } from "react";
 import Image from "next/image";
 import { FormattedMessage } from "react-intl";
 
-interface Char {
-  props: {
-    id: string;
+type CharacterProps = {
+  id: string;
+  name: string;
+  species: string;
+  image: string;
+  gender: string;
+  origin: {
     name: string;
-    species: string;
-    image: string;
-    gender: string;
-    origin: {
-      name: string;
-    };
   };
-}
+};
 
-export const Character = ({ props }: Char) => {
+export const Character = ({
+  name,
+  species,
+  image,
+  origin,
+  gender,
+}: CharacterProps) => {
   const [shouldShowMoreInfo, setShouldShowMoreInfo] = useState<boolean>(false);
-  const { name, species, image, origin, gender } = props;
 
   return (
     <div

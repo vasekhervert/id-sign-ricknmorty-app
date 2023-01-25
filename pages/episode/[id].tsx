@@ -17,38 +17,45 @@ import { Hero } from "../../components/Layout/Hero";
 import * as fs from "fs";
 import { FormattedMessage, FormattedDate } from "react-intl";
 
-interface Props {
-  episode: {
-    air_date: string;
-    characters: {
-      id: string;
-      name: string;
-      species: string;
-      image: string;
-      gender: string;
-      origin: { name: string };
-    }[];
-    episode: string;
+type EpisodeProps = {
+  episode: Episode;
+  comments: Comment[];
+};
+
+type Episode = {
+  air_date: string;
+  characters: Character[];
+  episode: string;
+  name: string;
+};
+
+type Comment = {
+  name?: string;
+  email: string;
+  timestamp: number;
+  message: string;
+};
+
+type Character = {
+  id: string;
+  name: string;
+  species: string;
+  image: string;
+  gender: string;
+  origin: {
     name: string;
   };
-  comments: {
-    name?: string;
-    email: string;
-    timestamp: number;
-    message: string;
-  }[];
-  epis: {};
-}
+};
 
-export const Episode: NextPage<Props> = (props) => {
-  const { name, episode, characters, air_date } = props.episode;
+export const Episode: NextPage<EpisodeProps> = ({ episode, comments }) => {
+  const { name, characters, air_date } = episode;
 
   return (
     <Layout>
       <Hero>
         <h2>{name}</h2>
         <p>
-          <span className="fw-bold">{episode}</span> |{" "}
+          <span className="fw-bold">{episode.episode}</span> |{" "}
           <FormattedMessage id="air_date" defaultMessage="Air date" />:{" "}
           <FormattedDate
             value={new Date(air_date)}
@@ -75,13 +82,20 @@ export const Episode: NextPage<Props> = (props) => {
         <Row>
           {characters.map((i) => (
             <Col key={i.id} xs={6} md={3} lg={4}>
-              <Character props={i} />
+              <Character
+                id={i.id}
+                name={i.name}
+                species={i.species}
+                image={i.image}
+                gender={i.gender}
+                origin={i.origin}
+              />
             </Col>
           ))}
         </Row>
       </Container>
 
-      <CommentsContainer comments={props.comments} />
+      <CommentsContainer comments={comments} />
     </Layout>
   );
 };

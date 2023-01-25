@@ -14,7 +14,6 @@ import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { postComment } from "../../helpers";
 import { FormattedMessage, useIntl } from "react-intl";
-import { setDefaultResultOrder } from "dns/promises";
 
 interface FormValues {
   nickname: string;
