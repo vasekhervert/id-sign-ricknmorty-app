@@ -7,8 +7,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 // components imports
-import SingleComment from "./SingleComment";
-import CommentsForm from "./CommentsForm";
+import { SingleComment } from "./SingleComment";
+import { CommentsForm } from "./CommentsForm";
 
 // other imports
 import { FormattedMessage } from "react-intl";
@@ -24,7 +24,7 @@ interface Comment {
   message: string;
 }
 
-const CommentsContainer = (props: CommentsProps) => {
+export const CommentsContainer = (props: CommentsProps) => {
   const [comments, setComments] = useState<Comment[]>(props.comments);
 
   const handleNewComment = (newComment: Comment) => {
@@ -86,5 +86,3 @@ const CommentsContainer = (props: CommentsProps) => {
     </Container>
   );
 };
-
-export default CommentsContainer;
