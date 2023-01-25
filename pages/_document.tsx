@@ -1,7 +1,5 @@
 import { Html, Head, Main, NextScript } from "next/document";
 
-const lang = "cs";
-
 const Document = () => {
   return (
     <Html>
